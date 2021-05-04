@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_02_040523) do
+ActiveRecord::Schema.define(version: 2021_05_04_145701) do
+
+  create_table "feed_managements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "yesterday_leftover", default: 0, null: false
+    t.integer "morning_addition", default: 0, null: false
+    t.integer "noon_addition", default: 0, null: false
+    t.integer "evening_addition", default: 0, null: false
+    t.integer "today_leftover", default: 0, null: false
+    t.integer "amount_eaten", null: false
+    t.date "created_on", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
