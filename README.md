@@ -67,11 +67,11 @@
 
 | Column             | Type        | Options                        |
 | ------------------ | ----------- | ------------------------------ |
-| yesterday_leftover | integer     | null: false                    |
-| morning_addition   | integer     |                                |
-| noon_addition      | integer     |                                |
-| evening_addition   | integer     |                                |
-| today_leftover     | integer     |                                |
+| yesterday_leftover | integer     | default: 0, null: false        |
+| morning_addition   | integer     | default: 0, null: false        |
+| noon_addition      | integer     | default: 0, null: false        |
+| evening_addition   | integer     | default: 0, null: false        |
+| today_leftover     | integer     | default: 0, null: false        |
 | amount_eaten       | integer     | null: false                    |
 | created_on         | date        | null: false, unique: true      |
 
