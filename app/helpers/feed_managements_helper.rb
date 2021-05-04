@@ -1,0 +1,2 @@
+module FeedManagementsHelper
+end
