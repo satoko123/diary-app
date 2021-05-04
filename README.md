@@ -22,6 +22,7 @@
 | weight          | float      |                                |
 | user            | references | null: false, foreign_key: true |
 | feed_management | references | null: false, foreign_key: true |
+| created_on      | date       | null: false, unique: true      |
 
 ### Association
 
@@ -72,6 +73,7 @@
 | evening_addition   | integer     |                                |
 | today_leftover     | integer     |                                |
 | amount_eaten       | integer     | null: false                    |
+| created_on         | date        | null: false, unique: true      |
 
 ### Association
 
