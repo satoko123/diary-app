@@ -8,6 +8,7 @@ class CreateFeedManagements < ActiveRecord::Migration[6.0]
       t.integer :today_leftover, default: 0, null: false
       t.integer :amount_eaten, null: false
       t.date    :created_on, null: false, unique: true
+      t.references :user, null: false, foreign_key: true
       t.timestamps
     end
   end
