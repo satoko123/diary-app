@@ -10,6 +10,7 @@
 ### Association
 
 - has_many :diaries
+- has_many :feed_managements
 <br />
 <br />
 <br />
@@ -80,6 +81,7 @@
 
 - has_many :diary_checks
 - has_many :diaries, through: :diary_checks
+- belongs_to :user
 <br />
 <br />
 <br />
