@@ -1,0 +1,18 @@
+<%= form_with model: @feed_management, local: true do |f| %>
+  昨日の残り
+  <%if FeedManagement.exists?%>
+    <%= f.text_field :yesterday_leftover, value: @feed_management_last.today_leftover%>g
+  <%else%>
+    <%= f.text_field :yesterday_leftover %>g
+  <%end%>
+ 
+  追加（朝）
+  <%= f.text_field :morning_addition %>g
+  追加（昼）
+  <%= f.text_field :noon_addition %>g
+  追加（夜）
+  <%= f.text_field :evening_addition %>g
+  残り
+  <%= f.text_field :today_leftover %>g
+  <%= f.submit "保存"%>
+<% end %>
