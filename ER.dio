@@ -1,6 +1,6 @@
 <mxfile>
     <diagram id="pb50yveim_ghjB2wdrNA" name="ページ1">
-        <mxGraphModel dx="504" dy="491" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="662" dy="406" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -32,10 +32,10 @@
                     <mxGeometry y="26" width="160" height="34" as="geometry"/>
                 </mxCell>
                 <mxCell id="13" value="feed_managements" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" parent="1" vertex="1">
-                    <mxGeometry x="280" y="320" width="160" height="220" as="geometry"/>
+                    <mxGeometry x="280" y="320" width="160" height="250" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" value="yesterday_leftover&#10;&#10;morning_addition&#10;&#10;noon_addition&#10;&#10;evening_addition&#10;&#10;today_leftover&#10;&#10;amount_eaten&#10;&#10;created_on" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="13" vertex="1">
-                    <mxGeometry y="26" width="160" height="194" as="geometry"/>
+                <mxCell id="14" value="yesterday_leftover&#10;&#10;morning_addition&#10;&#10;noon_addition&#10;&#10;evening_addition&#10;&#10;today_leftover&#10;&#10;amount_eaten&#10;&#10;created_on&#10;&#10;user_id" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="13" vertex="1">
+                    <mxGeometry y="26" width="160" height="224" as="geometry"/>
                 </mxCell>
                 <mxCell id="16" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=12;html=1;endArrow=ERmany;startArrow=ERone;entryX=-0.006;entryY=0.383;entryDx=0;entryDy=0;entryPerimeter=0;startFill=0;startSize=10;endSize=10;" parent="1" edge="1">
                     <mxGeometry width="100" height="100" relative="1" as="geometry">
@@ -77,6 +77,15 @@
                             <mxPoint x="360" y="40"/>
                             <mxPoint x="600" y="40"/>
                             <mxPoint x="840" y="40"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.45;entryY=0.96;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;endSize=10;startSize=10;" edge="1" parent="1" source="14" target="5">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="240" y="458"/>
+                            <mxPoint x="240" y="280"/>
+                            <mxPoint x="112" y="280"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>

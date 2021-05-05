@@ -74,6 +74,7 @@
 | today_leftover     | integer     | default: 0, null: false        |
 | amount_eaten       | integer     | null: false                    |
 | created_on         | date        | null: false, unique: true      |
+| user               | references  | null: false, foreign_key: true |
 
 ### Association
 
