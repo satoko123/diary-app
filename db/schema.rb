@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2021_05_04_145701) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_on"], name: "index_feed_managements_on_created_on", unique: true
     t.index ["user_id"], name: "index_feed_managements_on_user_id"
   end
 

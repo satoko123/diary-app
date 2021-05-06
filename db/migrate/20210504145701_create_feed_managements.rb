@@ -11,5 +11,6 @@ class CreateFeedManagements < ActiveRecord::Migration[6.0]
       t.references :user, null: false, foreign_key: true
       t.timestamps
     end
+    add_index :feed_managements, [:created_on], unique: true
   end
 end
