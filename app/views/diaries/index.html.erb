@@ -4,12 +4,12 @@
   <%# 今日のご飯記録がすでに作成済みの場合 %>
     <% if (FeedManagement.exists?) && Date.today == FeedManagement.last.created_on %>
       <%= flash[:success] %>
-      <%= link_to "ご飯記録を更新する", '#' %>
+      <%= link_to "ご飯記録を更新する", edit_feed_management_path(FeedManagement.last.id) %>
       <%= link_to "今日の日記を作る", '#' %>
       <%= link_to "日記を見る", '#' %>
       <%= link_to "買い物リスト", '#' %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      
+
   <%# 今日のご飯記録が未作成の場合 %>
     <% else %>
       <%= link_to "ご飯を記録する", new_feed_management_path %>
