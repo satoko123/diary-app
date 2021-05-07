@@ -4,15 +4,23 @@ class FeedManagement < ApplicationRecord
   end
 
   #バリデーション
-  with_options presence: true, numericality: { with: /\A[0-9]+\z/}  do
+  with_options presence: true do
     validates :yesterday_leftover
     validates :morning_addition
     validates :noon_addition
     validates :evening_addition
     validates :today_leftover
   end
-  validates :created_on, presence: true, uniqueness: true
 
+  with_options numericality: { with: /\A[0-9]+\z/, message: 'は半角数字で入力してください'} do 
+    validates :yesterday_leftover
+    validates :morning_addition
+    validates :noon_addition
+    validates :evening_addition
+    validates :today_leftover
+  end
+
+  validates :created_on, uniqueness: true
   # アソシエーション
   belongs_to :user
 end
