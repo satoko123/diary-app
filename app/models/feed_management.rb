@@ -4,7 +4,7 @@ class FeedManagement < ApplicationRecord
   end
 
   #バリデーション
-  with_options presence: true, format: { with: /\A[0-9]+\z/}  do
+  with_options presence: true, numericality: { with: /\A[0-9]+\z/}  do
     validates :yesterday_leftover
     validates :morning_addition
     validates :noon_addition
