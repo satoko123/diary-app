@@ -1,6 +1,7 @@
 class FeedManagementsController < ApplicationController
   before_action :get_date, only: [:new, :edit]
   before_action :feed_management_yesterday, only: [:new, :edit]
+  before_action :set_feed_management, only: [:edit, :update]
 
   def new
     @feed_management = FeedManagement.new
@@ -19,16 +20,14 @@ class FeedManagementsController < ApplicationController
   end
 
   def edit
-    @feed_management = FeedManagement.find(params[:id])
   end
 
   def update
-    feed_management = FeedManagement.find(params[:id])
-    if feed_management.valid?
-      feed_management.update(feed_management_params)
+    if @feed_management.update(feed_management_params)
       redirect_to root_path, flash: {success: "ご飯記録を更新しました"}
     else
       feed_management_yesterday
+      get_date
       render :edit
     end
     
@@ -52,6 +51,11 @@ class FeedManagementsController < ApplicationController
   # 今日の日付を取得
   def get_date
     @created_on = Date.today
+  end
+
+  # テーブルからデータを取得
+  def set_feed_management
+    @feed_management = FeedManagement.find(params[:id])
   end
 
 end
