@@ -13,6 +13,7 @@ class FeedManagementsController < ApplicationController
       redirect_to root_path, flash: {success: "ご飯記録を保存しました"}
     else
       feed_management_yesterday
+      get_date
       render :new
     end
   end
