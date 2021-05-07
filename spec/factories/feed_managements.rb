@@ -5,7 +5,7 @@ FactoryBot.define do
     noon_addition            {100}
     evening_addition         {100}
     today_leftover           {100}
-    created_on               {Faker::Date.in_date_period}
+    created_on               {Faker::Date.between(from: '2014-09-23', to: '2021-04-1')}
     association :user 
   end
 end

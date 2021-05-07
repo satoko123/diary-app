@@ -72,6 +72,15 @@ RSpec.describe FeedManagement, type: :model do
         @feed_management.valid?
         expect(@feed_management.errors.full_messages).to include("今日の残りは半角数字で入力してください")
       end
+
+      it 'created_onが重複していると登録できない' do
+        @feed_management.save
+        another_feed_management = FactoryBot.build(:feed_management)
+        another_feed_management.created_on = @feed_management.created_on
+        another_feed_management.valid?
+        expect(another_feed_management.errors.full_messages).to include("Created onはすでに存在します")
+      end
+
     end
   end
 end
