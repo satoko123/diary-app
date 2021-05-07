@@ -1,0 +1,21 @@
+ja:
+  date:
+    formats:
+      default: "%Y年%m月%d日(%a)"
+    day_names: [日曜日, 月曜日, 火曜日, 水曜日, 木曜日, 金曜日, 土曜日]
+    abbr_day_names: [日, 月, 火, 水, 木, 金, 土]
+    
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      short: "%y/%m/%d %H:%M"
+
+  activerecord:
+    attributes:
+      feed_management: 
+        yesterday_leftover: 昨日の残り
+        morning_addition: 朝の追加分
+        noon_addition: 昼の追加分
+        evening_addition: 夜の追加分
+        today_leftover: 今日の残り

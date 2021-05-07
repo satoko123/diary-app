@@ -10,6 +10,7 @@
 ### Association
 
 - has_many :diaries
+- has_many :feed_managements
 <br />
 <br />
 <br />
@@ -22,6 +23,7 @@
 | weight          | float      |                                |
 | user            | references | null: false, foreign_key: true |
 | feed_management | references | null: false, foreign_key: true |
+| created_on      | date       | null: false, unique: true      |
 
 ### Association
 
@@ -66,17 +68,20 @@
 
 | Column             | Type        | Options                        |
 | ------------------ | ----------- | ------------------------------ |
-| yesterday_leftover | integer     | null: false                    |
-| morning_addition   | integer     |                                |
-| noon_addition      | integer     |                                |
-| evening_addition   | integer     |                                |
-| today_leftover     | integer     |                                |
+| yesterday_leftover | integer     | default: 0, null: false        |
+| morning_addition   | integer     | default: 0, null: false        |
+| noon_addition      | integer     | default: 0, null: false        |
+| evening_addition   | integer     | default: 0, null: false        |
+| today_leftover     | integer     | default: 0, null: false        |
 | amount_eaten       | integer     | null: false                    |
+| created_on         | date        | null: false, unique: true      |
+| user               | references  | null: false, foreign_key: true |
 
 ### Association
 
 - has_many :diary_checks
 - has_many :diaries, through: :diary_checks
+- belongs_to :user
 <br />
 <br />
 <br />
