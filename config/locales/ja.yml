@@ -10,3 +10,12 @@ ja:
       default: "%Y/%m/%d %H:%M:%S"
       long: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       short: "%y/%m/%d %H:%M"
+
+  activerecord:
+    attributes:
+      feed_management: 
+        yesterday_leftover: 昨日の残り
+        morning_addition: 朝の追加分
+        noon_addition: 昼の追加分
+        evening_addition: 夜の追加分
+        today_leftover: 今日の残り
