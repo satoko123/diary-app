@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2021_05_08_140757) do
     t.float "weight"
     t.date "created_on", null: false
     t.bigint "user_id", null: false
-    t.bigint "feed_management_id", null: false
+    t.bigint "feed_management_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["created_on"], name: "index_diaries_on_created_on", unique: true
