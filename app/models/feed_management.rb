@@ -23,4 +23,5 @@ class FeedManagement < ApplicationRecord
   validates :created_on, uniqueness: true
   # アソシエーション
   belongs_to :user
+  has_one :diary
 end
