@@ -79,8 +79,7 @@
 
 ### Association
 
-- has_many :diary_checks
-- has_many :diaries, through: :diary_checks
+- has_one :diary
 - belongs_to :user
 <br />
 <br />
