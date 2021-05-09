@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root to: "diaries#index"
   resources :feed_managements, only: [:new, :create, :edit, :update]
   resources :diaries
+  resources :sessions, only: [:create] 
 end

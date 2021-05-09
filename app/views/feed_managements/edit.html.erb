@@ -24,9 +24,8 @@
   <%# 今日の日付も渡す %>
   <%= f.hidden_field :created_on, value: @created_on %>
     <% if @value %>
-    <%= f.hidden_field :value, value: @value %>
-    <%= f.submit "保存だよ" %>
+      <%= f.submit "保存して日記作成ページへ戻る" %>
     <%else%>
-    <%= f.submit "保存"%>
+      <%= f.submit "保存"%>
     <%end%>
 <% end %>

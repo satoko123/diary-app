@@ -26,8 +26,7 @@
   <%= f.hidden_field :created_on, value: @created_on %>
   <%# 日記作成ページ経由の場合 %>
   <% if @value %>
-    <%# <%= f.hidden_field :value, value: @value %> %>
-    <%= f.submit "保存だよ" %>
+    <%= f.submit "保存して日記作成ページへ戻る" %>
   <% else %>
     <%= f.submit "保存"%>
   <%end%>
