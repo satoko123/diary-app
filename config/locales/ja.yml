@@ -19,3 +19,5 @@ ja:
         noon_addition: 昼の追加分
         evening_addition: 夜の追加分
         today_leftover: 今日の残り
+      diary:
+        weight: 体重
