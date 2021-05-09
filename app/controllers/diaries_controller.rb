@@ -16,20 +16,37 @@ class DiariesController < ApplicationController
   end
 
   def create
+    @feed_management = FeedManagement.find_by(created_on: params[:diary][:created_on])
     case params[:commit] 
     when "ご飯記録を更新する" # ご飯記録更新ページへ
       save_session
-      @feed_management = FeedManagement.find_by(created_on: params[:diary][:created_on])
       redirect_to edit_feed_management_path(commit: params[:commit], created_on: params[:diary][:created_on],id: @feed_management[:id]) # ご飯記録編集ページへ
     when "ご飯記録を作成する" # ご飯記録作成ページへ
       save_session
       redirect_to new_feed_management_path(commit: params[:commit], created_on: params[:diary][:created_on]) # ご飯記録作成ページへ
     else
-      
+      @diary = Diary.new(diary_params)
+      if @diary.valid?
+        @diary.save
+        redirect_to diaries_path, flash: {success: "日記を保存しました"}
+      else
+        @created_on = @diary.created_on
+        get_last_data
+        render :new
+      end
     end
   end
 
+  def list
+
+  end
+
   private
+
+  # ストロングパラメータ
+  def diary_params
+    params.require(:diary).permit(:text, :weight, :created_on, images: []).merge(user_id: current_user.id, feed_management_id: @feed_management[:id])
+  end
 
   # 今日の日付を取得
   def get_date

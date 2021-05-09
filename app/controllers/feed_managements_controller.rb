@@ -102,11 +102,6 @@ class FeedManagementsController < ApplicationController
     @feed_management = FeedManagement.find(params[:id])
   end
 
-  # 送られてきた日付を取得
-  def params_created_on
-    @created_on = feed_management_params[:created_on] 
-  end
-
   # 新規作成時の日付を取得
   def get_created_on
     @created_on = @feed_management.created_on
