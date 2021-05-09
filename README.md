@@ -22,7 +22,7 @@
 | text            | string     |                                |
 | weight          | float      |                                |
 | user            | references | null: false, foreign_key: true |
-| feed_management | references | null: false, foreign_key: true |
+| feed_management | references | foreign_key: true              |
 | created_on      | date       | null: false, unique: true      |
 
 ### Association
