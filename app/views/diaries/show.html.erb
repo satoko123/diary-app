@@ -1,0 +1,38 @@
+<%= l(@diary.created_on)%>の日記
+  (最終更新
+  <%= l(@diary.created_at, format: :short)%>)
+  
+  <br><%# 投稿画像があれば1枚目を表示 %>
+    <% if @diary.images.count > 0 %>
+     投稿画像<br>
+      <% @diary.images.each do |image| %> 
+        <%= image_tag image.variant(resize_to_fill: [128, 128]) %>
+      <%end%>
+    <%else%>
+      投稿画像なし
+    <%end%>
+  <div>
+  今日のメモ
+  <div>
+  <%= @diary.text %>
+  </div>
+  </div>
+  <div>
+  体重
+  <div>
+  <% if @diary.weight == nil %>
+    体重が登録されてません
+  <%else%>
+    <%= @diary.weight %>kg
+  <%end%>
+  </div>
+  </div>
+  <div>
+  食べた餌の量
+  <div>
+    <%= @diary.feed_management.amount_eaten %>g
+  </div>
+  </div>
+
+  <%= link_to "編集", edit_diary_path(@diary.id) %>
+  <%= link_to "削除", diary_path(@diary.id), method: :delete %>
