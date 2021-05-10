@@ -6,7 +6,7 @@
       <%= flash[:success] %>
       <%= link_to "ご飯記録を更新する", edit_feed_management_path(@last_data.id) %>
       <%= link_to "今日の日記を作る", new_diary_path %>
-      <%= link_to "日記を見る", '#' %>
+      <%= link_to "日記を見る", diaries_path %>
       <%= link_to "買い物リスト", '#' %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 
@@ -14,7 +14,7 @@
     <% else %>
       <%= link_to "ご飯を記録する", new_feed_management_path %>
       <%= link_to "今日の日記を作る", new_diary_path %>
-      <%= link_to "日記を見る", '#' %>
+      <%= link_to "日記を見る", diaries_path %>
       <%= link_to "買い物リスト", '#' %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% end %>
