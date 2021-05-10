@@ -40,7 +40,10 @@ class DiariesController < ApplicationController
   def list
     @diaries = Diary.order('created_on DESC')
   end
-
+  
+  def show
+    @diary = Diary.find(params[:id])
+  end
 
 
   private
