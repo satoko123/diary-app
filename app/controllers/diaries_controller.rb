@@ -6,7 +6,6 @@ class DiariesController < ApplicationController
   end
 
   def new 
-    binding.pry
    if params[:commit] == "保存して日記作成ページへ戻る"
     @created_on = session[:created_on].to_date
     @diary = Diary.new(text: session[:text], weight: session[:weight], created_on: @created_on)
@@ -41,6 +40,8 @@ class DiariesController < ApplicationController
   def list
     @diaries = Diary.order('created_on DESC')
   end
+
+
 
   private
 
