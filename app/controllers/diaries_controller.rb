@@ -39,7 +39,7 @@ class DiariesController < ApplicationController
   end
 
   def list
-
+    @diaries = Diary.order('created_on DESC')
   end
 
   private
