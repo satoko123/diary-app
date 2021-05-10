@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function(){
       // ファイル選択ボタンを生成
       const inputHTML = document.createElement('input')
       inputHTML.setAttribute('id', `message_image_${imageElementNum}`)
-      inputHTML.setAttribute('name', 'message[images][]')
+      inputHTML.setAttribute('name', 'diary[images][]')
       inputHTML.setAttribute('type', 'file')
 
       // 生成したdiv要素にimg要素を子要素として入れる
