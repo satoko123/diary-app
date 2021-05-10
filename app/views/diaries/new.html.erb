@@ -1,14 +1,10 @@
 <%= l(@created_on) %>
 日記新規作成ページ
 <%= form_with model: @diary, local: true do |f| %>
-  <%# 画像がある場合 %>
-  <%if diary.images.attached? %>
-    <% @diary.images.each do |image|  %>
-      <%= image_tag image %>
-    <% end %>
-  <% end %>
-  <%= f.file_field :images, name: 'diary[images][]' %>
 
+  <%= f.file_field :images, name: 'diary[images][]', id:"item-image" %>
+  <%# 画像が選択された場合プレビューを表示 %>
+  <div id="image-list"></div>
 今日のメモ
   <%= f.text_area :text, placeholder:"今日あった出来事を残しておきましょう"%>
 体重
