@@ -1,11 +1,12 @@
 ご飯を記録する 
+
 <%= l(@created_on) %>
 <%= form_with model: @feed_management, local: true do |f| %>
 <%# エラーメッセージを表示 %>
 <%= render "layouts/error_messages", model: f.object %>
   昨日の残り
   <%# 昨日のご飯記録データがある場合 %>
-  <%if FeedManagement.where(created_on: Date.today-1).exists?%>
+  <%if FeedManagement.where(created_on: @created_on-1).exists?%>
     <%# 昨日のご飯の残りを取得 %>
     <%= f.text_field :yesterday_leftover, value: @feed_management_yesterday.today_leftover %>g
   <%# 昨日のご飯記録データがない場合 %>
@@ -23,5 +24,10 @@
   <%= f.text_field :today_leftover %>g
   <%# 今日の日付も渡す %>
   <%= f.hidden_field :created_on, value: @created_on %>
-  <%= f.submit "保存"%>
+  <%# 日記作成ページ経由の場合 %>
+  <% if @value %>
+    <%= f.submit "保存して日記作成ページへ戻る" %>
+  <% else %>
+    <%= f.submit "保存"%>
+  <%end%>
 <% end %>
