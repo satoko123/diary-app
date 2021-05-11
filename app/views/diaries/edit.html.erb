@@ -1,7 +1,10 @@
 <%= l(@diary.created_on) %>
 日記編集ページ
 <%= form_with model: @diary, local: true do |f| %>
-<%= render "layouts/error_messages", model: f.object %>
+  <%= render "layouts/error_messages", model: f.object %>
+  <% @diary.images.each do |image| %>
+    <%= image_tag image %>
+  <% end %>
   <%= f.file_field :images, name: 'diary[images][]', id:"item-image" %>
   <%# 画像が選択された場合プレビューを表示 %>
   <div id="image-list"></div>

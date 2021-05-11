@@ -2,7 +2,7 @@ class DiariesController < ApplicationController
   before_action :get_date, only: [:index]
   before_action :get_feed_management, only: [:index, :new]
   before_action :get_diary, only: [:index]
-  before_action :set_diary, only: [:show, :edit, :update]
+  before_action :set_diary, only: [:show, :edit, :update, :destroy]
   
   def index
 
@@ -80,6 +80,12 @@ class DiariesController < ApplicationController
       end
     end
   end
+
+  def destroy
+    @diary.destroy
+    redirect_to action: :list
+  end
+
 
 
   private
