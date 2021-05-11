@@ -27,6 +27,11 @@ RSpec.describe Diary, type: :model do
         expect(@diary).to be_valid
       end
 
+      it 'feed_management_idが空でも登録できる' do
+        @diary.feed_management_id = nil
+        expect(@diary).to be_valid
+      end
+
     end
 
     context '内容に問題がある場合' do 

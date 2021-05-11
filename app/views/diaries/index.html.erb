@@ -2,10 +2,16 @@
 <% if user_signed_in? %>
 
   <%# 今日のご飯記録がすでに作成済みの場合 %>
-    <% if (FeedManagement.exists?) && @created_on == @last_data.created_on %>
+    <% if @today_feed_management %>
       <%= flash[:success] %>
-      <%= link_to "ご飯記録を更新する", edit_feed_management_path(@last_data.id) %>
-      <%= link_to "今日の日記を作る", new_diary_path %>
+      <%= link_to "ご飯記録を更新する", edit_feed_management_path(@today_feed_management.id) %>
+        <%# 今日の日記がすでに作成済みの場合 %>
+        <% if @today_diary %>
+          <%= link_to "今日の日記を編集する", edit_diary_path(@today_diary.id) %>
+        <%# 今日の日記が未作成の場合 %>
+        <% else %> 
+          <%= link_to "今日の日記を作る", new_diary_path %>
+        <% end %>
       <%= link_to "日記を見る", diaries_path %>
       <%= link_to "買い物リスト", '#' %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
@@ -13,7 +19,13 @@
   <%# 今日のご飯記録が未作成の場合 %>
     <% else %>
       <%= link_to "ご飯を記録する", new_feed_management_path %>
-      <%= link_to "今日の日記を作る", new_diary_path %>
+        <%# 今日の日記がすでに作成済みの場合 %>
+        <% if @today_diary %>
+          <%= link_to "今日の日記を編集する", edit_diary_path(@today_diary.id) %>
+        <%# 今日の日記が未作成の場合 %>
+        <% else %> 
+          <%= link_to "今日の日記を作る", new_diary_path %>
+        <% end %>
       <%= link_to "日記を見る", diaries_path %>
       <%= link_to "買い物リスト", '#' %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
