@@ -3,31 +3,44 @@ class FeedManagementsController < ApplicationController
 
   def new
     # 日記作成ページ経由の場合
-    if params[:commit] == "ご飯記録を作成する"
+    if params[:commit]
       @feed_management = FeedManagement.new
-      @value = params[:commit]
+      @value_new = params[:commit]
       set_date
       feed_management_yesterday
+    # 日記編集ページ経由の場合
+    elsif params[:button]
+      @feed_management = FeedManagement.new
+      @value_new = params[:button]
+      set_date
+      feed_management_yesterday
+    # トップページ経由の場合
     else
-    # 日記作成ページ経由でない場合
       @feed_management = FeedManagement.new
       get_date
     end
   end
 
   def create
-    if params[:commit] == "保存して日記作成ページへ戻る"
-      @feed_management = FeedManagement.new(feed_management_params)
+    @feed_management = FeedManagement.new(feed_management_params)
+    # 日記作成・編集ページ経由の場合
+    if params[:commit] == "保存して日記作成ページへ戻る" || params[:commit] == "保存して日記編集ページへ戻る"
       if @feed_management.valid?
         @feed_management.save
-        redirect_to new_diary_path(commit: params[:commit])
+        # 日記作成ページ経由の場合
+        if params[:commit] == "保存して日記作成ページへ戻る"
+          redirect_to new_diary_path(commit: params[:commit])
+        # 日記作成ページ経由の場合
+        else
+          redirect_to edit_diary_path(commit: params[:commit], id: @feed_management.diary.id)
+        end
       else
         get_created_on
         feed_management_yesterday
         render :new
       end
+    # トップページ経由の場合
     else
-      @feed_management = FeedManagement.new(feed_management_params)
       if @feed_management.valid?
         @feed_management.save
         redirect_to root_path, flash: {success: "ご飯記録を保存しました"}
@@ -40,10 +53,15 @@ class FeedManagementsController < ApplicationController
   end
 
   def edit
-    set_feed_management
-    if params[:commit] == "ご飯記録を更新する"
+    # 日記作成ページ経由の場合
+    if params[:commit]
       get_created_on
-      @value = params[:commit]
+      @value_new = params[:commit]
+      feed_management_yesterday
+    # 日記編集ページ経由の場合
+    elsif params[:button]
+      get_created_on
+      @value_edit = params[:button]
       feed_management_yesterday
     else  
       get_created_on
@@ -52,15 +70,22 @@ class FeedManagementsController < ApplicationController
   end
 
   def update
-    set_feed_management
-    if params[:commit] == "保存して日記作成ページへ戻る"
+    #日記作成・編集ページ経由の場合
+    if params[:commit] == "保存して日記作成ページへ戻る" || params[:commit] == "保存して日記編集ページへ戻る"
       if @feed_management.update(feed_management_params)
-        redirect_to new_diary_path(commit: params[:commit])
+        # 日記作成ページ経由の場合
+        if params[:commit] == "保存して日記作成ページへ戻る"
+          redirect_to new_diary_path(commit: params[:commit])
+        # 日記編集ページ経由の場合
+        else 
+          redirect_to edit_diary_path(commit: params[:commit], id: @feed_management.diary.id)
+        end
       else
         get_created_on
         feed_management_yesterday
         render :edit
       end
+    # トップページ経由の場合
     else 
       if @feed_management.update(feed_management_params)
         redirect_to root_path, flash: {success: "ご飯記録を更新しました"}
@@ -82,7 +107,7 @@ class FeedManagementsController < ApplicationController
   
   # 昨日のデータがある場合以下を実行
   def feed_management_yesterday
-    if FeedManagement.where(created_on: @created_on-1).exists?
+    if FeedManagement.find_by(created_on: @created_on-1)
       @feed_management_yesterday = FeedManagement.find_by(created_on: @created_on-1)
     end
   end
@@ -92,7 +117,7 @@ class FeedManagementsController < ApplicationController
     @created_on = Date.today
   end
 
-  # 日記作成ページの場合
+  # 日記作成ページ経由の場合
   def set_date
     @created_on = params[:created_on].to_date
   end

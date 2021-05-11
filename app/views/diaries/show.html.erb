@@ -30,7 +30,11 @@
   <div>
   食べた餌の量
   <div>
-    <%= @diary.feed_management.amount_eaten %>g
+    <% if @today_feed_management %>
+      <%= @today_feed_management.amount_eaten %>g
+    <% else %>
+      ご飯記録がありません
+    <% end %>
   </div>
   </div>
 

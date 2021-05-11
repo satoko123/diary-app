@@ -23,8 +23,12 @@
   <%= f.text_field :today_leftover %>g
   <%# 今日の日付も渡す %>
   <%= f.hidden_field :created_on, value: @created_on %>
-    <% if @value %>
+    <%# 日記作成ページ経由の場合 %>
+    <% if @value_new == "ご飯記録を更新する"%>
       <%= f.submit "保存して日記作成ページへ戻る" %>
+    <%# 日記編集ページ経由の場合 %>
+    <% elsif @value_edit == "ご飯記録を更新する" %>
+      <%= f.submit "保存して日記編集ページへ戻る" %>
     <%else%>
       <%= f.submit "保存"%>
     <%end%>
