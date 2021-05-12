@@ -8,21 +8,22 @@
   <%= f.file_field :images, name: 'diary[images][]', id:"item-image" %>
   <%# 画像が選択された場合プレビューを表示 %>
   <div id="image-list"></div>
-メモ
+  メモ
   <%= f.text_area :text, placeholder:"今日あった出来事を残しておきましょう"%>
-体重
+  体重
   <%= f.text_field :weight %>kg
   <%# 今日の日付も渡す %>
   <%= f.hidden_field :created_on, value: @diary.created_on %>
     <%# すでに今日のご飯記録作成済みの場合 %>
     <% if @today_feed_management %>
-      食べた餌の量<%= @today_feed_management.amount_eaten %>g
-      →<%= f.submit "ご飯記録を更新する", name: "button" %>
+    食べた餌の量
+    <%= @today_feed_management.amount_eaten %>g
+     →<%= f.submit "ご飯記録を更新する", name: "button" %>
     <%# 今日のご飯記録未作成の場合 %>
     <% else %>
-      食べた餌の量
-      ご飯記録が未作成です
-      →<%= f.submit "ご飯記録を作成する", name: "button"%>
+    食べた餌の量
+    ご飯記録が未作成です
+    →<%= f.submit "ご飯記録を作成する", name: "button"%>
     <% end %>
   <%= f.submit "保存"%>
 <% end %>
