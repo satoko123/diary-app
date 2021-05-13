@@ -6,7 +6,7 @@
   <%= link_to diary_path(diary.id) do %>
   <%= l(diary.created_on)%>の日記
   (最終更新
-  <%= l(diary.created_at, format: :short)%>)
+  <%= l(diary.updated_at, format: :long)%>)
   <%# 投稿画像があれば1枚目を表示 %>
     <% if diary.images.count > 0 %>
       <%= image_tag diary.images.first.variant(resize_to_fill: [128, 128]) %>
