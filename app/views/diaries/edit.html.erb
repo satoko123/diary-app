@@ -2,10 +2,16 @@
 日記編集ページ
 <%= form_with model: @diary, local: true do |f| %>
   <%= render "layouts/error_messages", model: f.object %>
-  <% @diary.images.each do |image| %>
-    <%= image_tag image %>
+  <%# 画像があれば表示する %>
+  <%if @diary.images.attached? %>
+    <% @diary.images.each do |image| %>
+      <%= image_tag image %>
+    <% end %>
   <% end %>
-  <%= f.file_field :images, name: 'diary[images][]', id:"item-image" %>
+  <%# 入力した画像データはフォーム送信時にダイレクトアップロード %>
+  <%= f.file_field :images, name: 'diary[images][]', id:"item-image" , multiple: true, direct_upload: true %>
+  <%# バリデーションで戻った場合、画像があれば画像データを送る %>
+  <%= f.hidden_field :image_blob_id, value: @diary.image_blob_id if @diary.images.attached?%>
   <%# 画像が選択された場合プレビューを表示 %>
   <div id="image-list"></div>
   メモ
@@ -18,9 +24,9 @@
     <% if @today_feed_management %>
     食べた餌の量
     <%= @today_feed_management.amount_eaten %>g
-     →<%= f.submit "ご飯記録を更新する", name: "button" %>
+    →<%= f.submit "ご飯記録を更新する", name: "button" %>
     <%# 今日のご飯記録未作成の場合 %>
-    <% else %>
+    <% elsif %>
     食べた餌の量
     ご飯記録が未作成です
     →<%= f.submit "ご飯記録を作成する", name: "button"%>
