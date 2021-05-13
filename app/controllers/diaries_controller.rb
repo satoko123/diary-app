@@ -64,6 +64,8 @@ class DiariesController < ApplicationController
   end
 
   def update
+    binding.pry
+    # 画像データと紐づける
     case params[:button]
     when "ご飯記録を更新する" # ご飯記録更新ページへ 
       save_session
@@ -72,6 +74,8 @@ class DiariesController < ApplicationController
       save_session
       redirect_to new_feed_management_path(button: params[:button], created_on: params[:diary][:created_on]) 
     else
+      # 画像データが添付されていなくて、blobテーブルには存在する場合
+      @diary.images.attach(ActiveStorage::Blob.find(@diary.image_blob_id)) if !@diary.images.attached? && @diary.image_blob_id
       @today_feed_management = FeedManagement.find_by(created_on: @diary.created_on)
       if @diary.update(diary_params)
         redirect_to diary_path(@diary.id), flash: {success: "日記を編集しました"}
@@ -94,10 +98,10 @@ class DiariesController < ApplicationController
   def diary_params
     # ご飯記録がある場合
     if @today_feed_management != nil
-      params.require(:diary).permit(:text, :weight, :created_on, images: []).merge(user_id: current_user.id, feed_management_id: @today_feed_management.id )
+      params.require(:diary).permit(:text, :weight, :created_on, images: [], image_blob_id: []).merge(user_id: current_user.id, feed_management_id: @today_feed_management.id )
     # ご飯記録がない場合
     else
-      params.require(:diary).permit(:text, :weight, :created_on, images: []).merge(user_id: current_user.id )
+      params.require(:diary).permit(:text, :weight, :created_on, images: [], image_blob_id: []).merge(user_id: current_user.id )
     end
   end
 
