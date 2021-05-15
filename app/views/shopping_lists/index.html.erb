@@ -1,9 +1,9 @@
 買い物リスト
 
 
-<%= form_with url: "/posts", method: :post,id: "form" do |form| %>
-  <%= form.text_field :content %>
-  <%= form.submit '追加する' , id: "submit" %>
+<%= form_with url: shopping_lists_path, method: :post,id: "form" do |f| %>
+  <%= f.text_field :item_name, id: "content"%>
+  <%= f.submit '追加する' , id: "submit" %>
 <% end %>
 
 <div id="list">
@@ -11,7 +11,7 @@
 
 <% @shopping_lists.each do |shopping_list| %>
   <div class="post" >
-    <div class="post-date">
+    <div>
       <%= shopping_list.item_name %>
     </div>
   </div>
