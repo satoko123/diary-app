@@ -51,7 +51,6 @@ class DiariesController < ApplicationController
   end
 
   def edit
-    binding.pry
     # ご飯記録更新ページから戻ってきた場合
     if params[:commit] == "保存して日記ページへ戻る"
       created_on = session[:created_on].to_date
@@ -62,7 +61,6 @@ class DiariesController < ApplicationController
   end
 
   def update
-    binding.pry
     @today_feed_management = FeedManagement.find_by(created_on: @diary.created_on)
     if @diary.update(diary_params)
       case params[:button]
