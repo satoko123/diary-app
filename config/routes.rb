@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   root to: "diaries#index"
   get 'diaries', to: 'diaries#list'
   resources :diaries, except: [:index]
-  resources :sessions, only: [:create] 
+  get 'shopping_lists', to: 'shopping_lists#index'
 end
