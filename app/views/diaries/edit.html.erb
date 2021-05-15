@@ -5,13 +5,11 @@
   <%# 画像があれば表示する %>
   <%if @diary.images.attached? %>
     <% @diary.images.each do |image| %>
-      <%= image_tag image %>
+      <%= image_tag image.variant(resize_to_fill: [128, 128]) %>
     <% end %>
   <% end %>
   <%# 入力した画像データはフォーム送信時にダイレクトアップロード %>
-  <%= f.file_field :images, name: 'diary[images][]', id:"item-image" , multiple: true, direct_upload: true %>
-  <%# バリデーションで戻った場合、画像があれば画像データを送る %>
-  <%= f.hidden_field :image_blob_id, value: @diary.image_blob_id if @diary.images.attached?%>
+  <%= f.file_field :images, name: 'diary[images][]', id:"item-image" %>
   <%# 画像が選択された場合プレビューを表示 %>
   <div id="image-list"></div>
   メモ

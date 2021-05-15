@@ -70,30 +70,18 @@ class FeedManagementsController < ApplicationController
   end
 
   def update
-    #日記作成・編集ページ経由の場合
-    if params[:commit] == "保存して日記作成ページへ戻る" || params[:commit] == "保存して日記編集ページへ戻る"
-      if @feed_management.update(feed_management_params)
-        # 日記作成ページ経由の場合
-        if params[:commit] == "保存して日記作成ページへ戻る"
-          redirect_to new_diary_path(commit: params[:commit])
-        # 日記編集ページ経由の場合
-        else 
-          redirect_to edit_diary_path(commit: params[:commit], id: @feed_management.diary.id)
-        end
-      else
-        get_created_on
-        feed_management_yesterday
-        render :edit
-      end
-    # トップページ経由の場合
-    else 
-      if @feed_management.update(feed_management_params)
+    if @feed_management.update(feed_management_params)
+      #日記作成・編集ページ経由の場合
+      if params[:commit] == "保存して日記ページへ戻る"
+        redirect_to edit_diary_path(commit: params[:commit], id: @feed_management.diary.id)
+      else 
         redirect_to root_path, flash: {success: "ご飯記録を更新しました"}
-      else
-        get_created_on
-        feed_management_yesterday
-        render :edit
       end
+      # トップページ経由の場合
+    else 
+      get_created_on
+      feed_management_yesterday
+      render :edit
     end
   end
 

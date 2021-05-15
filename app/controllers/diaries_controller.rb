@@ -13,6 +13,7 @@ class DiariesController < ApplicationController
    if params[:commit] == "保存して日記作成ページへ戻る"
     @created_on = session[:created_on].to_date
     @diary = Diary.new(text: session[:text], weight: session[:weight], created_on: @created_on)
+   # 日記作成ページ経由の場合
    else
     @diary = Diary.new
     get_date
@@ -21,26 +22,24 @@ class DiariesController < ApplicationController
   end
 
   def create
-    binding.pry
-    case params[:commit] 
-    when "ご飯記録を更新する" # ご飯記録更新ページへ
-      @feed_management = FeedManagement.find_by(created_on: params[:diary][:created_on])
-      save_session
-      redirect_to edit_feed_management_path(commit: params[:commit],id: @feed_management[:id]) # ご飯記録編集ページへ
-    when "ご飯記録を作成する" # ご飯記録作成ページへ
-      save_session
-      redirect_to new_feed_management_path(commit: params[:commit], created_on: params[:diary][:created_on]) # ご飯記録作成ページへ
-    else
-      @feed_management = FeedManagement.find_by(created_on: params[:diary][:created_on])
-      @diary = Diary.new(diary_params)
+    @today_feed_management = FeedManagement.find_by(created_on: params[:diary][:created_on])
+    @diary = Diary.new(diary_params)
       if @diary.valid?
         @diary.save
-        redirect_to diaries_path, flash: {success: "日記を保存しました"}
+        case params[:commit] 
+        when "ご飯記録を更新する" # ご飯記録更新ページへ
+          save_session
+          redirect_to edit_feed_management_path(commit: params[:commit],id: @today_feed_management[:id]) # ご飯記録編集ページへ
+        when "ご飯記録を作成する" # ご飯記録作成ページへ
+          save_session
+          redirect_to new_feed_management_path(commit: params[:commit], created_on: params[:diary][:created_on]) # ご飯記録作成ページへ
+        else
+          redirect_to diaries_path, flash: {success: "日記を保存しました"}
+        end
       else
         @created_on = @diary.created_on
         render :new
       end
-    end
   end
 
   def list
@@ -52,12 +51,11 @@ class DiariesController < ApplicationController
   end
 
   def edit
+    binding.pry
     # ご飯記録更新ページから戻ってきた場合
-    if params[:commit] == "保存して日記編集ページへ戻る"
+    if params[:commit] == "保存して日記ページへ戻る"
       created_on = session[:created_on].to_date
       @today_feed_management = FeedManagement.find_by(created_on: created_on ) 
-      @diary.text = session[:text]
-      @diary.weight = session[:weight]
     else
       @today_feed_management = FeedManagement.find_by(created_on: @diary.created_on) 
     end  
@@ -65,23 +63,19 @@ class DiariesController < ApplicationController
 
   def update
     binding.pry
-    # 画像データと紐づける
-    case params[:button]
-    when "ご飯記録を更新する" # ご飯記録更新ページへ 
-      save_session
-      redirect_to edit_feed_management_path(button: params[:button], id: @diary.feed_management.id)
-    when "ご飯記録を作成する" # ご飯記録作成ページへ
-      save_session
-      redirect_to new_feed_management_path(button: params[:button], created_on: params[:diary][:created_on]) 
-    else
-      # 画像データが添付されていなくて、blobテーブルには存在する場合
-      @diary.images.attach(ActiveStorage::Blob.find(@diary.image_blob_id)) if !@diary.images.attached? && @diary.image_blob_id
-      @today_feed_management = FeedManagement.find_by(created_on: @diary.created_on)
-      if @diary.update(diary_params)
-        redirect_to diary_path(@diary.id), flash: {success: "日記を編集しました"}
+    @today_feed_management = FeedManagement.find_by(created_on: @diary.created_on)
+    if @diary.update(diary_params)
+      case params[:button]
+      when "ご飯記録を更新する" # ご飯記録更新ページへ 
+        redirect_to edit_feed_management_path(button: params[:button], id: @diary.feed_management.id)
+      when "ご飯記録を作成する" # ご飯記録作成ページへ
+          save_session
+          redirect_to new_feed_management_path(button: params[:button], created_on: params[:diary][:created_on]) 
       else 
-        render :edit
+        redirect_to diary_path(@diary.id), flash: {success: "日記を編集しました"}
       end
+    else 
+      render :edit
     end
   end
 
@@ -98,10 +92,10 @@ class DiariesController < ApplicationController
   def diary_params
     # ご飯記録がある場合
     if @today_feed_management != nil
-      params.require(:diary).permit(:text, :weight, :created_on, images: [], image_blob_id: []).merge(user_id: current_user.id, feed_management_id: @today_feed_management.id )
+      params.require(:diary).permit(:text, :weight, :created_on, images: []).merge(user_id: current_user.id, feed_management_id: @today_feed_management.id )
     # ご飯記録がない場合
     else
-      params.require(:diary).permit(:text, :weight, :created_on, images: [], image_blob_id: []).merge(user_id: current_user.id )
+      params.require(:diary).permit(:text, :weight, :created_on, images: []).merge(user_id: current_user.id )
     end
   end
 
@@ -131,5 +125,4 @@ class DiariesController < ApplicationController
   def set_diary
     @diary = Diary.find(params[:id])
   end
-
 end
