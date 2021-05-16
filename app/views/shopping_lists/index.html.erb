@@ -9,10 +9,12 @@
 <div id="list">
 </div>
 
-<% @shopping_lists.each do |shopping_list| %>
-  <div class="post" >
-    <div>
-      <%= shopping_list.item_name %>
-    </div>
-  </div>
-<% end %>
+<ul class="post">
+  <% @shopping_lists.each do |shopping_list| %>
+    <%# 各リストにデータidを付与 %>
+    <li>
+      <%= check_box_tag :check, shopping_list.id%>
+      <%= label_tag :check, shopping_list.item_name, id: shopping_list.id %>
+    </li>
+  <% end %>
+</ul>

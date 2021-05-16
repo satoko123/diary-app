@@ -29,7 +29,7 @@ function add_item() {
       const HTML = `
         <div class="post" >
           <div>
-            ${shopping_list.item_name}：${shopping_list.item_name}
+            ${shopping_list.item_name}
           </div>
         </div>`;
       // list要素の直後にHTMLを追加

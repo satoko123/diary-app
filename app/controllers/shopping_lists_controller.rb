@@ -9,4 +9,12 @@ class ShoppingListsController < ApplicationController
     # フロントエンドへjson形式でデータ返却
     render json: { post: shopping_list}
   end
+
+
+  def order
+    shopping_list = ShoppingList.find(params[:id])
+    shopping_list.destroy
+  end
+
+
 end
