@@ -13,7 +13,7 @@
           <%= link_to "今日の日記を作る", new_diary_path %>
         <% end %>
       <%= link_to "日記を見る", diaries_path %>
-      <%= link_to "買い物リスト", '#' %>
+      <%= link_to "買い物リスト", shopping_lists_path %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 
   <%# 今日のご飯記録が未作成の場合 %>
@@ -27,7 +27,7 @@
           <%= link_to "今日の日記を作る", new_diary_path %>
         <% end %>
       <%= link_to "日記を見る", diaries_path %>
-      <%= link_to "買い物リスト", '#' %>
+      <%= link_to "買い物リスト", shopping_lists_path %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
     <% end %>
 

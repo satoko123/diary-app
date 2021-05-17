@@ -20,7 +20,6 @@ class FeedManagement < ApplicationRecord
     validates :today_leftover
   end
 
-  validates :created_on, uniqueness: true
   # アソシエーション
   belongs_to :user
   has_one :diary

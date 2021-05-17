@@ -1,0 +1,7 @@
+label[data-check="true"] {
+  color: #16a816;
+}
+
+#order_button{
+  display: none;
+}

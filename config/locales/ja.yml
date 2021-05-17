@@ -21,3 +21,6 @@ ja:
         today_leftover: 今日の残り
       diary:
         weight: 体重
+      shopping_list:
+        item_name: その品物
+

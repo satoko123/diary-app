@@ -2,7 +2,6 @@ class Diary < ApplicationRecord
 
   # バリデーション
   validates :weight, numericality: { allow_nil: true, message: 'は半角数字で入力してください' }
-  validates :created_on, uniqueness: true
   
   # アソシエーション
   belongs_to :user
