@@ -1,8 +1,12 @@
 function check() {
   // 全checkbox要素取得
-  const checkboxes = document.getElementsByName("check");
+  const checkboxes = document.getElementsByName("check[]");
   // 各checkbox要素取得
   checkboxes.forEach(function (checkbox) {
+    if (checkbox.getAttribute("data-load") != null) {
+      return null;
+    }
+    checkbox.setAttribute("data-load", "true");
     checkbox.addEventListener("change", () => {
       // そのcheckboxをオンにしたらそのvalueを取得
       const check_id = checkbox.getAttribute("value");
@@ -16,8 +20,24 @@ function check() {
         // 色を付ける
         check_list.setAttribute("data-check", "true");
       }
+      // 購入ボタンを取得
+      const orderButton = document.getElementById("order_button");
+      // checkboxがオンになっている数を取得
+      const checkedNum = document.querySelectorAll("label[data-check]").length;
+      // orderButtonにすでにdisplay:blockが付与されている場合
+      if (orderButton.getAttribute("style") == "display:block;"){
+        // チェックされているものがない場合
+        if (checkedNum == 0){
+          orderButton.removeAttribute("style", "display:block;")
+        }
+      }else {
+        // orderButtonにdisplay:blockが付与されていない場合
+        // チェックされているものがある場合
+        if (checkedNum > 0){
+          orderButton.setAttribute("style", "display:block;")
+        }
+      };
     }); 
   });
 }
-  
-window.addEventListener("load", check);
+setInterval(check, 1000);

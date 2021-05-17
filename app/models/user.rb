@@ -10,4 +10,5 @@ class User < ApplicationRecord
   # アソシエーション
   has_many :feed_managements
   has_many :diaries
+  has_many :shopping_lists
 end

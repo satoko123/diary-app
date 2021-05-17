@@ -3,6 +3,11 @@ function add_item() {
   submit.addEventListener("click", (e) => {
     // フォームオブジェクトを生成し、フォームの値を取得
     const formData = new FormData(document.getElementById("form"));
+    // 空の場合
+    if (document.getElementById("content").value == ""){
+      alert("品物を入力してください");
+      return null;
+    }
     // サーバにリクエストを送るためのオブジェクト生成
     const XHR = new XMLHttpRequest();
     // リクエスト内容
@@ -17,23 +22,29 @@ function add_item() {
     XHR.onload = () => {
       // エラーの場合（200=正常）
       if (XHR.status != 200) {
-        alert(`Error ${XHR.status}: ${XHR.statusText}`);
-        // エラーの場合は処理を抜ける
-        return null; 
+        if (XHR.status == 500) {
+          alert("その品物はすでにリストにあります");
+          // エラーの場合は処理を抜ける
+          return null
+        }else{
+          alert(`Error ${XHR.status}: ${XHR.statusText}`);
+          // エラーの場合は処理を抜ける
+          return null
+        };
       }
       const shopping_list = XHR.response.post;
-      const list = document.getElementById("list");
+      const post = document.getElementsByClassName("post");
       // 入力フォームを取得
       const formText = document.getElementById("content");
+      const value = shopping_list.id;
       // フォーム送信の内容表示
       const HTML = `
-        <div class="post" >
-          <div>
-            ${shopping_list.item_name}
-          </div>
-        </div>`;
+        <li list-id="${value}">
+          <input type="checkbox" name="check[]" id="check" value="${value}">
+          <label id="${value}" for="check">${shopping_list.item_name}</label>
+        </li>`;
       // list要素の直後にHTMLを追加
-      list.insertAdjacentHTML("afterend", HTML);
+      post[0].insertAdjacentHTML("afterbegin",HTML);
       // フォームの値を空欄にする
       formText.value = "";
     };

@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   get 'diaries', to: 'diaries#list'
   resources :diaries, except: [:index]
   resources :shopping_lists, only: [:index, :create]
-  get 'shopping_lists/:id', to: 'shopping_lists#order'
+  delete 'shopping_lists', to: 'shopping_lists#order'
 end

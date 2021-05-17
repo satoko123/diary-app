@@ -4,7 +4,8 @@
 <% @diaries.each do |diary| %> 
 <div> 
   <%= link_to diary_path(diary.id) do %>
-  <%= l(diary.created_on)%>の日記
+     <%= l(diary.created_on)%>の日記
+  <%end%>
   (最終更新
   <%= l(diary.updated_at, format: :long)%>)
   <%# 投稿画像があれば1枚目を表示 %>
@@ -13,7 +14,6 @@
     <%else%>
       投稿画像なし
     <%end%>
-  <%end%>
 <div>
 
 

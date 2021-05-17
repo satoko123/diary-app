@@ -11,6 +11,7 @@
 
 - has_many :diaries
 - has_many :feed_managements
+- has_many :shopping_lists
 <br />
 <br />
 <br />
@@ -23,7 +24,7 @@
 | weight          | float      |                                |
 | user            | references | null: false, foreign_key: true |
 | feed_management | references | foreign_key: true              |
-| created_on      | date       | null: false, unique: true      |
+| created_on      | date       | null: false                    |
 
 ### Association
 
@@ -74,7 +75,7 @@
 | evening_addition   | integer     | default: 0, null: false        |
 | today_leftover     | integer     | default: 0, null: false        |
 | amount_eaten       | integer     | null: false                    |
-| created_on         | date        | null: false, unique: true      |
+| created_on         | date        | null: false                    |
 | user               | references  | null: false, foreign_key: true |
 
 ### Association
@@ -90,4 +91,9 @@
 | Column             | Type        | Options                        |
 | ------------------ | ----------- | ------------------------------ |
 | item_name          | string      | null: false, unique: true      |
+| user               | references  | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
 

@@ -2,7 +2,7 @@
 日記新規作成ページ
 <%= form_with model: @diary, local: true do |f| %>
 <%= render "layouts/error_messages", model: f.object %>
-  <%# 入力した画像データはフォーム送信時にダイレクトアップロード %>
+  <%# 画像データ%>
   <%= f.file_field :images, name: 'diary[images][]', id:"item-image" %>
   <%# 画像が選択された場合プレビューを表示 %>
   <div id="image-list"></div>
