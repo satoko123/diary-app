@@ -113,7 +113,9 @@ class FeedManagementsController < ApplicationController
   # DBの機能のデータの「今日の残り」も更新する
   def update_yesterday_data
     get_created_on
-    feed_management_yesterday
-    @feed_management_yesterday.update_attribute(:today_leftover, params[:feed_management][:yesterday_leftover])
+    if FeedManagement.find_by(created_on: @created_on-1, user_id: current_user.id)
+      feed_management_yesterday
+      @feed_management_yesterday.update_attribute(:today_leftover, params[:feed_management][:yesterday_leftover])
+    end
   end
 end

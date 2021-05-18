@@ -90,7 +90,7 @@
 
 | Column             | Type        | Options                               |
 | ------------------ | ----------- | ------------------------------------- |
-| item_name          | string      | null: false, unique:true(scope: user) |
+| item_name          | string      | null: false                           |
 | user               | references  | null: false, foreign_key: true        |
 
 ### Association

@@ -1,5 +1,5 @@
 function add_item() {
-  // 買い物ページのみで関数が動くように指定
+  // 買い物リストページのみで関数が動くように指定
   if ( document.getElementById('order_form')){
     const submit = document.getElementById("submit");
     submit.addEventListener("click", (e) => {
@@ -25,10 +25,6 @@ function add_item() {
         // エラーの場合（200=正常）
         if (XHR.status != 200) {
           if (XHR.status == 500) {
-            alert("その品物はすでにリストにあります");
-            // エラーの場合は処理を抜ける
-            return null
-          }else{
             alert(`Error ${XHR.status}: ${XHR.statusText}`);
             // エラーの場合は処理を抜ける
             return null
@@ -55,5 +51,4 @@ function add_item() {
     });
   }
 }
-
 window.addEventListener("load", add_item);

@@ -19,8 +19,10 @@ ja:
         noon_addition: 昼の追加分
         evening_addition: 夜の追加分
         today_leftover: 今日の残り
+        created_on: 今日のごはん記録
       diary:
         weight: 体重
+        created_on: 今日の日記
       shopping_list:
         item_name: その品物
 

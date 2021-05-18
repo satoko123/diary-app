@@ -20,6 +20,8 @@ class FeedManagement < ApplicationRecord
     validates :today_leftover
   end
 
+  validates :created_on, presence: true, uniqueness: { scope: :user, message: 'はすでに作成されています。トップページに戻って確認してください' }
+
   # アソシエーション
   belongs_to :user
   has_one :diary

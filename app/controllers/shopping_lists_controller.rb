@@ -22,5 +22,9 @@ class ShoppingListsController < ApplicationController
     render json: {post: order_lists}
   end
 
+  def shopping_list_params
+    params.require(:shopping_list).permit(:item_name).merge(user_id: current_user.id) # ログインユーザを追加
+  end
+
 
 end
