@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(){
 //プレビュー機能
-  // 新規作成ページのみで関数が動くように指定
-  if ( document.getElementById('item-image')){
+  // 日記作成・編集ページのみで関数が動くように指定
+  if ( document.getElementById('diary_form')){
     //画像表示用の要素を取得
     const ImageList = document.getElementById('image-list')
       
