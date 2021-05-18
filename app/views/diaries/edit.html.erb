@@ -1,14 +1,20 @@
 <%= l(@diary.created_on) %>
 日記編集ページ
-<%= form_with model: @diary, local: true do |f| %>
+<%= form_with model: @diary, id: "diary_form", local: true do |f| %>
   <%= render "layouts/error_messages", model: f.object %>
-  <%# 画像があれば表示する %>
+  <%# 保存済み画像があれば表示する %>
   <%if @diary.images.attached? %>
     <% @diary.images.each do |image| %>
-      <%= image_tag image.variant(resize_to_fill: [128, 128]) %>
+      <%# 保存済み画像のidをimage-idとして付与 %>
+      <div image_id= <%= image.id%>>
+        <%= image_tag image.variant(resize_to_fill: [128, 128]) %>
+        <%# 保存済み画像削除ボタン(同じimage-idを付与)押した時にjavascript起動 %>
+        <%= f.submit "削除", image_id: image.id, diary_id: @diary.id%>
+        <%= f.file_field :images, name: 'diary[images][]', id:"default-image"%>
+      </div>
     <% end %>
   <% end %>
-  <%# 入力した画像データはフォーム送信時にダイレクトアップロード %>
+  <%# 追加画像データの入力フォーム %>
   <%= f.file_field :images, name: 'diary[images][]', id:"item-image" %>
   <%# 画像が選択された場合プレビューを表示 %>
   <div id="image-list"></div>

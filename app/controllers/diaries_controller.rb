@@ -5,6 +5,7 @@ class DiariesController < ApplicationController
   
   def index
     if user_signed_in? 
+      get_date
       get_feed_management
       get_diary
     end
@@ -71,7 +72,13 @@ class DiariesController < ApplicationController
     @diary.destroy
     redirect_to action: :list
   end
-
+ 
+  def image_destroy
+    @image = ActiveStorage::Blob.find(params[:id])
+    @image.attachments.first.purge
+    # フロントエンドへjson形式でデータ返却
+    render json: {post: params[:id]}
+  end
 
 
   private
