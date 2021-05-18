@@ -5,6 +5,5 @@ class CreateShoppingLists < ActiveRecord::Migration[6.0]
       t.references :user, null: false, foreign_key: true
       t.timestamps
     end
-    add_index :shopping_lists, :item_name, unique: true
   end
 end

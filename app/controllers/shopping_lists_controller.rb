@@ -5,7 +5,6 @@ class ShoppingListsController < ApplicationController
 
 
   def create
-    binding.pry
     shopping_list = ShoppingList.create(item_name: params[:item_name], user_id: current_user.id)
     # フロントエンドへjson形式でデータ返却
     render json: {post: shopping_list}
