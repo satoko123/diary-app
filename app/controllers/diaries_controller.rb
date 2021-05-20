@@ -16,8 +16,12 @@ class DiariesController < ApplicationController
   end
 
   def create
+    binding.pry
     @today_feed_management = FeedManagement.find_by(created_on: params[:diary][:created_on], user_id: current_user.id)
     @diary = Diary.new(diary_params)
+    # もともと投稿していた画像がある場合
+    binding.pry
+    @diary.images.attach(ActiveStorage::Blob.find(params[:diary][:images_blob_ids])) if params[:diary][:images_blob_ids]
       if @diary.valid?
         @diary.save
         case params[:commit] 
@@ -39,6 +43,7 @@ class DiariesController < ApplicationController
   end
   
   def show
+    binding.pry
     @today_feed_management = FeedManagement.find_by(created_on: @diary.created_on, user_id: current_user.id) 
   end
 
@@ -87,10 +92,10 @@ class DiariesController < ApplicationController
   def diary_params
     # ご飯記録がある場合
     if @today_feed_management != nil
-      params.require(:diary).permit(:text, :weight, :created_on, images: []).merge(user_id: current_user.id, feed_management_id: @today_feed_management.id )
+      params.require(:diary).permit(:text, :weight, :created_on, images: [], images_blob_ids: []).merge(user_id: current_user.id, feed_management_id: @today_feed_management.id )
     # ご飯記録がない場合
     else
-      params.require(:diary).permit(:text, :weight, :created_on, images: []).merge(user_id: current_user.id )
+      params.require(:diary).permit(:text, :weight, :created_on, images: [], images_blob_ids: []).merge(user_id: current_user.id )
     end
   end
 

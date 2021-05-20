@@ -1,4 +1,5 @@
 class Diary < ApplicationRecord
+  attr_accessor :images_blob_id
 
   # バリデーション
   validates :weight, numericality: { allow_nil: true, message: 'は半角数字で入力してください' }

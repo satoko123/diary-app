@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function(){
       inputHTML.setAttribute('id', `message_image_${imageElementNum}`)
       inputHTML.setAttribute('name', 'diary[images][]')
       inputHTML.setAttribute('type', 'file')
+      inputHTML.setAttribute('data-direct-upload-url', 'http://localhost:3000/rails/active_storage/direct_uploads')
 
       // 生成したdiv要素にimg要素を子要素として入れる
       imageElement.appendChild(blobImage);
