@@ -16,11 +16,9 @@ class DiariesController < ApplicationController
   end
 
   def create
-    binding.pry
     @today_feed_management = FeedManagement.find_by(created_on: params[:diary][:created_on], user_id: current_user.id)
     @diary = Diary.new(diary_params)
     # もともと投稿していた画像がある場合
-    binding.pry
     @diary.images.attach(ActiveStorage::Blob.find(params[:diary][:images_blob_ids])) if params[:diary][:images_blob_ids]
       if @diary.valid?
         @diary.save
@@ -43,7 +41,6 @@ class DiariesController < ApplicationController
   end
   
   def show
-    binding.pry
     @today_feed_management = FeedManagement.find_by(created_on: @diary.created_on, user_id: current_user.id) 
   end
 
@@ -58,8 +55,13 @@ class DiariesController < ApplicationController
   end
 
   def update
+    binding.pry
     @today_feed_management = FeedManagement.find_by(created_on: @diary.created_on, user_id: current_user.id)
-    if @diary.update(diary_params)
+    # もともと投稿していた画像がある場合
+    @diary.images.attach(ActiveStorage::Blob.find(params[:diary][:images_blob_ids])) if @diary.images.attached? && params[:diary][:images_blob_ids]
+    # 追加で投稿する画像がある場合
+    @diary.images.attach(params[:diary][:images]) if params[:diary][:images]
+    if @diary.update(diary_params_edit)
       case params[:button]
       when "ご飯記録を更新する" # ご飯記録更新ページへ 
         redirect_to edit_feed_management_path(button: params[:button], id: @diary.feed_management.id)
@@ -96,6 +98,17 @@ class DiariesController < ApplicationController
     # ご飯記録がない場合
     else
       params.require(:diary).permit(:text, :weight, :created_on, images: [], images_blob_ids: []).merge(user_id: current_user.id )
+    end
+  end
+
+  # ストロングパラメータ（編集画面用)
+  def diary_params_edit
+    # ご飯記録がある場合
+    if @today_feed_management != nil
+      params.require(:diary).permit(:text, :weight, :created_on).merge(user_id: current_user.id, feed_management_id: @today_feed_management.id )
+    # ご飯記録がない場合
+    else
+      params.require(:diary).permit(:text, :weight, :created_on).merge(user_id: current_user.id )
     end
   end
 

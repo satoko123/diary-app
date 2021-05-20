@@ -4,7 +4,7 @@
 <%= render "layouts/error_messages", model: f.object %>
   <%# 既存のファイル選択ボタン (ダイレクトアップロード) %>
   <%= f.file_field :images, name: 'diary[images][]', id:"item-image", direct_upload: true %>
-  <%# バリデーションの際にここに画像が表示される %>
+  <%# ダイレクトアップロード済みの画像が表示される %>
   <%if @diary.images.attached?%>
     <% @diary.images.each do |image| %>
       <div class="image-element">

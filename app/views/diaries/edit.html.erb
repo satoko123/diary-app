@@ -1,23 +1,29 @@
 <%= l(@diary.created_on) %>
 日記編集ページ
 <%= form_with model: @diary, id: "diary_form", local: true do |f| %>
-  <%= render "layouts/error_messages", model: f.object %>
-  <%# 保存済み画像があれば表示する %>
+<%= render "layouts/error_messages", model: f.object %>
+  <%# ダイレクトアップロード済みの画像が表示される %>
   <%if @diary.images.attached? %>
     <% @diary.images.each do |image| %>
       <%# 保存済み画像のidをimage-idとして付与 %>
-      <div image_id= <%= image.id%>>
+      <div image_id= <%= image.blob_id%>>
         <%= image_tag image.variant(resize_to_fill: [128, 128]) %>
         <%# 保存済み画像削除ボタン(同じimage-idを付与)押した時にjavascript起動 %>
-        <%= f.submit "削除", image_id: image.id, diary_id: @diary.id%>
-        <%= f.file_field :images, name: 'diary[images][]', id:"default-image"%>
+        <%= f.submit "削除", image_id: image.blob_id, diary_id: @diary.id%>
+        <%= f.file_field :images, name: 'diary[images][]', id:"default-image", direct_upload: true %>
       </div>
     <% end %>
   <% end %>
   <%# 追加画像データの入力フォーム %>
-  <%= f.file_field :images, name: 'diary[images][]', id:"item-image" %>
+  <%= f.file_field :images, name: 'diary[images][]', id:"item-image", direct_upload: true %>
   <%# 画像が選択された場合プレビューを表示 %>
   <div id="image-list"></div>
+  <%# すでに紐づいている画像がある場合そのblob_idも送る %>
+  <%if @diary.images.attached?%>
+    <% @diary.images.each do |image| %>
+      <%= hidden_field_tag "diary[images_blob_ids][]", image.blob_id%>
+    <%end%>
+  <%end%>
   メモ
   <%= f.text_area :text, placeholder:"今日あった出来事を残しておきましょう"%>
   体重

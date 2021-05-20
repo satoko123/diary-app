@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function(){
               alert(`Error ${XHR.status}: ${XHR.statusText}`);
               エラーの場合は処理を抜ける
               return null
-          }
+          };
           // 受け取ったレスポンス
           const response = XHR.response.post;
           // 同じimage-idを持ったdiv要素を取得
@@ -39,7 +39,14 @@ document.addEventListener('DOMContentLoaded', function(){
             if (destroyImage.getAttribute("image_id") == response){
               destroyImage.remove()
             }; 
-          }); 
+          });
+          // image-idと同じvalueを持ったinput要素を取得(削除対象のblob_idを送らないようにする)
+          const destroy_blob_ids = document.getElementsByName("diary[images_blob_ids][]");
+          destroy_blob_ids.forEach(function (destroy_blob_id) {
+            if (destroy_blob_id.getAttribute("value") == response){
+              destroy_blob_id.remove()
+            }; 
+          });
         };
         e.preventDefault();
       }); 
