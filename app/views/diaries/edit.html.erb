@@ -16,7 +16,7 @@
   <%# 画像が選択された場合プレビューを表示 %>
   <div id="image-list"></div>
     <%# 画像選択ボタン %>
-  <div class="click-upload">
+  <div class="click-upload edit-click-upload">
     <%= f.label :images, for:"diary_image_0", id: "diary_0", class: "upload_label" do %>
       <%= icon('fas', 'file-upload upload_button') %>
       <%= f.file_field :images, name:"diary[images][]", id:"diary_image_0",class:"first_button", style: "display: none;", direct_upload: true %>
