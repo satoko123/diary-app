@@ -7,7 +7,7 @@ class ShoppingListsController < ApplicationController
   def create
     shopping_list = ShoppingList.create(item_name: params[:item_name], user_id: current_user.id)
     # フロントエンドへjson形式でデータ返却
-    render json: { post: shopping_list}
+    render json: {post: shopping_list}
   end
 
 
@@ -20,6 +20,10 @@ class ShoppingListsController < ApplicationController
     end
     # フロントエンドへjson形式でデータ返却
     render json: {post: order_lists}
+  end
+
+  def shopping_list_params
+    params.require(:shopping_list).permit(:item_name).merge(user_id: current_user.id) # ログインユーザを追加
   end
 
 

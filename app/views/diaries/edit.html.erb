@@ -1,17 +1,35 @@
 <%= l(@diary.created_on) %>
 日記編集ページ
-<%= form_with model: @diary, local: true do |f| %>
-  <%= render "layouts/error_messages", model: f.object %>
-  <%# 画像があれば表示する %>
+<%= form_with model: @diary, id: "diary_edit_form", local: true do |f| %>
+<%= render "layouts/error_messages", model: f.object %>
+  <%# ダイレクトアップロード済みの画像が表示される %>
   <%if @diary.images.attached? %>
     <% @diary.images.each do |image| %>
-      <%= image_tag image.variant(resize_to_fill: [128, 128]) %>
+      <%# 保存済み画像のidをimage-idとして付与 %>
+      <div image_id= <%= image.blob_id%> class="image-element">
+        <%= image_tag image.variant(resize_to_fill: [128, 128]) %>
+        <%# 保存済み画像削除ボタン(同じimage-idを付与)押した時にjavascript起動 %>
+        <%= f.submit "削除", image_id: image.blob_id, diary_id: @diary.id%>
+      </div>
     <% end %>
   <% end %>
-  <%# 入力した画像データはフォーム送信時にダイレクトアップロード %>
-  <%= f.file_field :images, name: 'diary[images][]', id:"item-image" %>
   <%# 画像が選択された場合プレビューを表示 %>
   <div id="image-list"></div>
+    <%# 画像選択ボタン %>
+  <div class="click-upload">
+    <%= f.label :images, for:"diary_image_0", id: "diary_0", class: "upload_label" do %>
+      <%= icon('fas', 'file-upload upload_button') %>
+      <%= f.file_field :images, name:"diary[images][]", id:"diary_image_0",class:"first_button", style: "display: none;", direct_upload: true %>
+      <div class="click">クリックしてファイル選択
+      </div>
+    <%end%>
+  </div>
+  <%# すでに紐づいている画像がある場合そのblob_idも送る %>
+  <%if @diary.images.attached?%>
+    <% @diary.images.each do |image| %>
+      <%= hidden_field_tag "diary[images_blob_ids][]", image.blob_id%>
+    <%end%>
+  <%end%>
   メモ
   <%= f.text_area :text, placeholder:"今日あった出来事を残しておきましょう"%>
   体重

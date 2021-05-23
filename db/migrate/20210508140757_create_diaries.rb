@@ -8,5 +8,6 @@ class CreateDiaries < ActiveRecord::Migration[6.0]
       t.references :feed_management, foreign_key: true
       t.timestamps
     end
+    add_index :diaries, [:created_on, :user_id], unique: true
   end
 end

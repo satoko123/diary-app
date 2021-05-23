@@ -1,0 +1,46 @@
+/* 画像、ファイル選択ボタン */
+#image-list{
+  display: flex;
+}
+
+img{
+  height: 20vh;
+  width: 10vw;
+  object-fit: contain;
+  background-color: teal;
+  background-color: #e0e6e98a;
+  border: 3px dashed;
+  border-radius: 4%;
+  margin-left: 10px;
+}
+
+
+.upload_button{
+  font-size: 50px;
+  margin-top: 30%;
+}
+
+.click{
+  color: black;
+  padding-top: 5%;
+  font-size: 12px;
+  font-weight: bolder;
+
+}
+.click-upload{
+  display: none;
+}
+
+
+.click-upload label{
+  height: 20vh;
+  width: 10vw;
+  background-color: #e0e6e98a;
+  align-items: center;
+  border: 3px dashed;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4%;
+}
+
+/* 削除ボタン */

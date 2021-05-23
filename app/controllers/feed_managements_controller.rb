@@ -26,6 +26,7 @@ class FeedManagementsController < ApplicationController
     @feed_management = FeedManagement.new(feed_management_params)
     if @feed_management.valid?
       @feed_management.save
+      update_yesterday_data
       # 日記作成・編集ページ経由の場合
       if params[:commit] == "保存して日記作成ページへ戻る"
         redirect_to edit_diary_path(commit: params[:commit], id: @feed_management.diary.id)
@@ -59,6 +60,7 @@ class FeedManagementsController < ApplicationController
 
   def update
     if @feed_management.update(feed_management_params)
+      update_yesterday_data
       #日記作成・編集ページ経由の場合
       if params[:commit] == "保存して日記ページへ戻る"
         redirect_to edit_diary_path(commit: params[:commit], id: @feed_management.diary.id)
@@ -106,5 +108,14 @@ class FeedManagementsController < ApplicationController
   # 新規作成時の日付を取得
   def get_created_on
     @created_on = @feed_management.created_on
+  end
+
+  # DBの機能のデータの「今日の残り」も更新する
+  def update_yesterday_data
+    get_created_on
+    if FeedManagement.find_by(created_on: @created_on-1, user_id: current_user.id)
+      feed_management_yesterday
+      @feed_management_yesterday.update_attribute(:today_leftover, params[:feed_management][:yesterday_leftover])
+    end
   end
 end

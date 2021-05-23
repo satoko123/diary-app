@@ -18,13 +18,13 @@
 
 ## diaries テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| text            | string     |                                |
-| weight          | float      |                                |
-| user            | references | null: false, foreign_key: true |
-| feed_management | references | foreign_key: true              |
-| created_on      | date       | null: false                    |
+| Column          | Type       | Options                                  |
+| --------------- | ---------- | ---------------------------------------- |
+| text            | string     |                                          |
+| weight          | float      |                                          |
+| user            | references | null: false, foreign_key: true           |
+| feed_management | references | foreign_key: true                        |
+| created_on      | date       | null: false, unique: true(scope:user)    |
 
 ### Association
 
@@ -67,16 +67,16 @@
 
 ## feed_managements テーブル
 
-| Column             | Type        | Options                        |
-| ------------------ | ----------- | ------------------------------ |
-| yesterday_leftover | integer     | default: 0, null: false        |
-| morning_addition   | integer     | default: 0, null: false        |
-| noon_addition      | integer     | default: 0, null: false        |
-| evening_addition   | integer     | default: 0, null: false        |
-| today_leftover     | integer     | default: 0, null: false        |
-| amount_eaten       | integer     | null: false                    |
-| created_on         | date        | null: false                    |
-| user               | references  | null: false, foreign_key: true |
+| Column             | Type        | Options                               |
+| ------------------ | ----------- | ------------------------------------- |
+| yesterday_leftover | integer     | default: 0, null: false               |
+| morning_addition   | integer     | default: 0, null: false               |
+| noon_addition      | integer     | default: 0, null: false               |
+| evening_addition   | integer     | default: 0, null: false               |
+| today_leftover     | integer     | default: 0, null: false               |
+| amount_eaten       | integer     | null: false                           |
+| created_on         | date        | null: false, unique: true(scope: user)|
+| user               | references  | null: false, foreign_key: true        |
 
 ### Association
 
@@ -88,10 +88,10 @@
 
 ## shopping_lists テーブル
 
-| Column             | Type        | Options                        |
-| ------------------ | ----------- | ------------------------------ |
-| item_name          | string      | null: false, unique: true      |
-| user               | references  | null: false, foreign_key: true |
+| Column             | Type        | Options                               |
+| ------------------ | ----------- | ------------------------------------- |
+| item_name          | string      | null: false                           |
+| user               | references  | null: false, foreign_key: true        |
 
 ### Association
 

@@ -1,11 +1,32 @@
 <%= l(@created_on) %>
 日記新規作成ページ
-<%= form_with model: @diary, local: true do |f| %>
+<%= form_with model: @diary, id: "diary_new_form", local: true do |f| %>
 <%= render "layouts/error_messages", model: f.object %>
-  <%# 画像データ%>
-  <%= f.file_field :images, name: 'diary[images][]', id:"item-image" %>
+  <%# ダイレクトアップロード済みの画像が表示される %>
+  <%if @diary.images.attached?%>
+    <% @diary.images.each do |image| %>
+      <div class="image-element">
+      <%= image_tag image %>
+      </div>
+    <%end%>
+  <%end%>
   <%# 画像が選択された場合プレビューを表示 %>
   <div id="image-list"></div>
+  <%# 画像選択ボタン %>
+  <div class="click-upload">
+    <%= f.label :images, for:"diary-image", id: "upload_label", class: "upload_label" do %>
+      <%= icon('fas', 'file-upload upload_button') %>
+      <%= f.file_field :images, name:"diary[images][]", id:"diary-image", style: "display: none;", direct_upload: true %>
+      <div class="click">クリックしてファイル選択
+      </div>
+    <%end%>
+  </div>
+  <%# すでに紐づいている画像がある場合そのblob_idも送る %>
+  <%if @diary.images.attached?%>
+    <% @diary.images.each do |image| %>
+      <%= hidden_field_tag "diary[images_blob_ids][]", image.blob_id%>
+    <%end%>
+  <%end%>
 今日のメモ
   <%= f.text_area :text, placeholder:"今日あった出来事を残しておきましょう"%>
 体重
@@ -24,5 +45,4 @@
     <% end %>
   <%= f.submit "保存"%>
 <% end %>
-
 
