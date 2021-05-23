@@ -55,7 +55,6 @@ class DiariesController < ApplicationController
   end
 
   def update
-    binding.pry
     @today_feed_management = FeedManagement.find_by(created_on: @diary.created_on, user_id: current_user.id)
     # もともと投稿していた画像がある場合
     @diary.images.attach(ActiveStorage::Blob.find(params[:diary][:images_blob_ids])) if @diary.images.attached? && params[:diary][:images_blob_ids]

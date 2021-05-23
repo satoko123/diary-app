@@ -1,7 +1,14 @@
 document.addEventListener('DOMContentLoaded', function(){
 // 画像データの削除機能
   // 新規作成・編集ページのみで関数が動くように指定
-  if ( document.getElementById('diary_form')){
+  if ( document.getElementById('diary_edit_form')){
+    // 投稿画像が5枚以下ならファイル選択ボタン表示
+    let selectedNum = document.querySelectorAll('.image-element').length
+    if (selectedNum < 5) {
+      clickUpload = document.getElementsByClassName('click-upload')
+      clickUpload[0].setAttribute('style', 'display: block;')
+    }
+
     // 削除ボタンを全て取得
     const deleteButtons = document.querySelectorAll("input[image_id]");
     // 各削除ボタンを取得してイベント適用
@@ -47,6 +54,13 @@ document.addEventListener('DOMContentLoaded', function(){
               destroy_blob_id.remove()
             }; 
           });
+          debugger
+          // 投稿画像が5枚以下ならファイル選択ボタン表示
+          let selectedNum = document.querySelectorAll('.image-element').length
+            if (selectedNum < 5) {
+              clickUpload = document.getElementsByClassName('click-upload')
+              clickUpload[0].setAttribute('style', 'display: block;')
+          }
         };
         e.preventDefault();
       }); 
