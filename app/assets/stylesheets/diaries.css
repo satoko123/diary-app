@@ -88,6 +88,9 @@
 #image-list{
   display: flex;
 }
+.image-form{
+  display: flex;
+}
 
 .image_form img{
   height: 20vh;
@@ -204,6 +207,14 @@
   border: 3px dashed #555555;    /* 枠の指定 */
   color: #555555;
   margin-top: 5vh;
+}
+/* 編集ページ */
+.diary_edit_image{
+  display: flex;
+}
+
+.diary_edit_images{
+  display: flex;
 }
 
 /* 一覧ページ */

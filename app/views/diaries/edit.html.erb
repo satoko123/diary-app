@@ -17,18 +17,22 @@
           <%= form_with model: @diary, id: "diary_edit_form", local: true do |f| %>
           <%= render "layouts/error_messages", model: f.object %>
             <%# ダイレクトアップロード済みの画像が表示される %>
-            <%if @diary.images.attached? %>
-              <% @diary.images.each do |image| %>
-                <%# 保存済み画像のidをimage-idとして付与 %>
-                <div image_id= <%= image.blob_id%> class="image-element">
-                  <%= image_tag image.variant(resize_to_fill: [128, 128]) %>
-                  <%# 保存済み画像削除ボタン(同じimage-idを付与)押した時にjavascript起動 %>
-                  <%= f.submit "削除", image_id: image.blob_id, diary_id: @diary.id%>
-                </div>
-              <% end %>
-            <% end %>
-            <%# 画像が選択された場合プレビューを表示 %>
-            <div id="image-list"></div>
+            <div class="diary_edit_images">
+                <%if @diary.images.attached? %>
+                  <div class="diary_edit_image">
+                    <% @diary.images.each do |image| %>
+                      <%# 保存済み画像のidをimage-idとして付与 %>
+                      <div image_id= <%= image.blob_id%> class="image-element">
+                          <%= image_tag image%>
+                          <%# 保存済み画像削除ボタン(同じimage-idを付与)押した時にjavascript起動 %>
+                          <%= f.submit "削除", image_id: image.blob_id, diary_id: @diary.id%>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+                <%# 画像が選択された場合プレビューを表示 %>
+                <div id="image-list"></div>
+            </div>
         </div>
             <%# 画像選択ボタン %>
             <div class="click-upload edit-click-upload">
