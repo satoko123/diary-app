@@ -235,6 +235,9 @@
   background-color: white;
   text-decoration: none;
 }
+.list_btn span{
+  font-weight: bold;
+}
 
 .list_image{
   width: 128px;
