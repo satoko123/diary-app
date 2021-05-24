@@ -153,8 +153,9 @@
   border-radius: 5px;
   height: 5vh; 
   padding: 3px 10px;
-  text-align: right;
+  text-align: center;
   width: 10vw;
+  font-size: larger;
 }
 
 .diary_weight:focus{
@@ -162,10 +163,30 @@
   outline: none;           /* ※ブラウザが標準で付加する線を消したいとき */
 }
 
+/* ご飯の量 */
 .bold{
   font-weight: bold;
   font-size: 20px;
+  vertical-align:bottom;
 }
+.amount_eaten{
+  margin-top: 5px;
+  height: 4vh; 
+  text-align: center;
+  width: 10vw;
+  color: #555555;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+.bottom_line{
+  border-bottom: 3px dashed #555555;
+}
+
+.fa-hand-point-right{
+  font-size: 1.5em;
+}
+
 
 .submit_btn{
   text-decoration: none;

@@ -2,7 +2,7 @@
   <div class="main">
     <div class="diary_new_top">
       <i class="fas fa-cat"></i>
-      <span><%= l(@created_on) %></span>の日記を作る
+      <span><%= l(@created_on) %></span>の日記
       <i class="fas fa-cat fa-flip-horizontal"></i>
     </div>
     
@@ -55,7 +55,7 @@
           <i class="fas fa-weight"></i>
           体重
         </div>
-          <%= f.text_field :weight ,class:"diary_weight"%>
+          <%= f.text_field :weight ,class:"diary_weight", placeholder:"※半角数字  例 2.5"%>
           <span class="bold">kg</span>
       </div>
       <div class="diary_new_content">
@@ -63,20 +63,26 @@
           <%= f.hidden_field :created_on, value: @created_on %>
             <%# すでに今日のご飯記録作成済みの場合 %>
             <% if @today_feed_management %>
-              食べた餌の量<%= @today_feed_management.amount_eaten %>
-              <span class="bold">g</span>
+              <div class="diary_new_list">
+                <i class="fas fa-fish"></i>
+                  食べた餌の量
+              </div>
+              <div class="amount_eaten">
+                <div class="bottom_line"><%= @today_feed_management.amount_eaten %>
+                <span class="bold">g</span>
+              </div>
               <i class="fas fa-hand-point-right"></i>
               <%= f.submit "ご飯記録を更新する"%>
             <%# 今日のご飯記録未作成の場合 %>
             <% else %>
-        <div class="diary_new_list">
-          <i class="fas fa-fish"></i>
-          食べた餌の量
-        </div>
-        <i class="fas fa-paw"></i>
-          今日のご飯記録を作成してください
-        <i class="fas fa-hand-point-right"></i>
-        <%= f.submit "ご飯記録を作成する"%>
+              <div class="diary_new_list">
+                <i class="fas fa-fish"></i>
+                食べた餌の量
+              </div>
+              <i class="fas fa-paw"></i>
+                ご飯記録を作成してください
+              <i class="fas fa-hand-point-right"></i>
+              <%= f.submit "ご飯記録を作成する"%>
             <% end %>
       </div>
           <%= f.submit "保存", class:"submit_btn"%>
