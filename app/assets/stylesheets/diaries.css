@@ -63,7 +63,7 @@
   font-size: 25px;
 }
 
-.fa-cat, .fa-file-alt, .fa-images, .fa-weight{
+.fa-cat, .fa-file-alt, .fa-images, .fa-weight, .fa-trash-alt{
   color: #66CCFF;
 }
 
@@ -189,6 +189,7 @@
 }
 
 .submit_btn{
+  background-color: #ffc;
   text-decoration: none;
   width: 300px;
   font-weight: bold;
@@ -247,3 +248,4 @@
   margin-left: 5px;
 }
 
+/* 日記詳細ページ */
