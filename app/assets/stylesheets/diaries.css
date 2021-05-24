@@ -15,7 +15,7 @@
   text-decoration: none;
   width: 300px;
   display       : inline-block;
-  border-radius : 5%;          /* 角丸       */
+  border-radius : 5px;          /* 角丸       */
   font-size     : 13pt;        /* 文字サイズ */
   text-align    : center;      /* 文字位置   */
   cursor        : pointer;     /* カーソル   */
@@ -193,7 +193,7 @@
   width: 300px;
   font-weight: bold;
   display       : inline-block;
-  border-radius : 5%;          /* 角丸       */
+  border-radius : 5px;          /* 角丸       */
   font-size     : 13pt;        /* 文字サイズ */
   text-align    : center;      /* 文字位置   */
   cursor        : pointer;     /* カーソル   */
@@ -203,3 +203,44 @@
   color: #555555;
   margin-top: 5vh;
 }
+
+/* 一覧ページ */
+.diary_lists{
+  padding: 5vh 5vh;
+  display:flex;
+  flex-direction: column;
+}
+
+.diary_list{
+  display: flex;
+  justify-content: center;
+  color: #555555;
+
+}
+
+.list_btn{
+  text-align: center;
+  margin :4vh;
+  padding : 0 0;
+  width: 800px;
+  display       : inline-block;
+  border-radius : 5px;          /* 角丸       */
+  font-size     : 13pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  line-height   : 1em;         /* 1行の高さ  */
+  border: 2px dashed #555555;    /* 枠の指定 */
+  color: #555555;
+  background-color: white;
+  text-decoration: none;
+}
+
+.list_image{
+  width: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+}
+

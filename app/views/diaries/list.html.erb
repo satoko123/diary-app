@@ -1,20 +1,36 @@
-<%= flash[:success] %>
-投稿日記一覧
-
-<% @diaries.each do |diary| %> 
-<div> 
-  <%= link_to diary_path(diary.id) do %>
-     <%= l(diary.created_on)%>の日記
-  <%end%>
-  (最終更新
-  <%= l(diary.updated_at, format: :long)%>)
-  <%# 投稿画像があれば1枚目を表示 %>
-    <% if diary.images.count > 0 %>
-      <%= image_tag diary.images.first.variant(resize_to_fill: [128, 128]) %>
-    <%else%>
-      投稿画像なし
-    <%end%>
-<div>
-
-
-<% end %>
+<%= render partial: "layouts/header" %>
+  <div class="main">
+    <%= flash[:success] %>
+      <div class="diary_new_top">
+        <i class="fas fa-cat"></i>
+          投稿日記一覧
+        <i class="fas fa-cat fa-flip-horizontal"></i>
+      </div>
+        
+    <div class="diary_lists">
+        <% @diaries.each do |diary| %> 
+          <div class="diary_list">
+            <div class="list_content">
+              <%= link_to diary_path(diary.id) , class: "list_btn" do %>
+                <%= l(diary.created_on)%>の日記
+                (最終更新
+                <%= l(diary.updated_at, format: :long)%>)
+              <%end%>
+            </div>
+            <%# 投稿画像があれば1枚目を表示 %>
+            <div class="list_image">
+                <% if diary.images.count > 0 %>
+                  <div>
+                    <%= image_tag diary.images.first.variant(resize_to_fill: [128, 128]) %>
+                  </div>
+                <%else%>
+                  <div>
+                    投稿画像なし
+                  </div>
+                <%end%>
+            </div>
+          </div>
+        <% end %> 
+    </div>
+  </div>
+<%= render partial: "layouts/footer" %>
