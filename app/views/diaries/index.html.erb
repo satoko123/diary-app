@@ -1,6 +1,6 @@
 <%= render partial: "layouts/header" %>
-  <div class="main">
-   <div class="top_lists">
+  <div class="top_main">
+    <div class="top_lists">
       <%# ログインしている場合 %>
       <% if user_signed_in? %>
         <%# 今日のご飯記録がすでに作成済みの場合 %>
@@ -67,4 +67,5 @@
       <% end %>
     </div>
   </div>
+
 <%= render partial: "layouts/footer" %>

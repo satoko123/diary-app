@@ -1,48 +1,87 @@
-<%= l(@created_on) %>
-日記新規作成ページ
-<%= form_with model: @diary, id: "diary_new_form", local: true do |f| %>
-<%= render "layouts/error_messages", model: f.object %>
-  <%# ダイレクトアップロード済みの画像が表示される %>
-  <%if @diary.images.attached?%>
-    <% @diary.images.each do |image| %>
-      <div class="image-element">
-      <%= image_tag image %>
+<%= render partial: "layouts/header" %>
+  <div class="main">
+    <div class="diary_new_top">
+      <i class="fas fa-cat"></i>
+      <span><%= l(@created_on) %></span>の日記を作る
+      <i class="fas fa-cat fa-flip-horizontal"></i>
+    </div>
+    
+    <div class="diary_new_lists">
+      <div class="diary_new_content">
+        <div class="diary_new_list">
+          <i class="fas fa-images"></i>
+            画像<br> 
+        </div>
+        <span><i class="fas fa-paw"></i>5枚まで選択できます</span>
+        <div class="image_form">
+          <%= form_with model: @diary, id: "diary_new_form", local: true do |f| %>
+          <%= render "layouts/error_messages", model: f.object %>
+            <%# ダイレクトアップロード済みの画像が表示される %>
+            <%if @diary.images.attached?%>
+              <% @diary.images.each do |image| %>
+                <div class="image-element">
+                <%= image_tag image %>
+                </div>
+              <%end%>
+            <%end%>
+            <%# 画像が選択された場合プレビューを表示 %>
+            <div id="image-list"></div>
+        </div>
+            <%# 画像選択ボタン %>
+            <div class="click-upload">
+              <%= f.label :images, for:"diary-image", id: "upload_label", class: "upload_label" do %>
+                <%= icon('fas', 'file-upload upload_button') %>
+                <%= f.file_field :images, name:"diary[images][]", id:"diary-image", style: "display: none;", direct_upload: true %>
+                <div class="click">クリックしてファイル選択
+                </div>
+              <%end%>
+            </div>
+          <%# すでに紐づいている画像がある場合そのblob_idも送る %>
+          <%if @diary.images.attached?%>
+            <% @diary.images.each do |image| %>
+              <%= hidden_field_tag "diary[images_blob_ids][]", image.blob_id%>
+            <%end%>
+          <%end%>
       </div>
-    <%end%>
-  <%end%>
-  <%# 画像が選択された場合プレビューを表示 %>
-  <div id="image-list"></div>
-  <%# 画像選択ボタン %>
-  <div class="click-upload">
-    <%= f.label :images, for:"diary-image", id: "upload_label", class: "upload_label" do %>
-      <%= icon('fas', 'file-upload upload_button') %>
-      <%= f.file_field :images, name:"diary[images][]", id:"diary-image", style: "display: none;", direct_upload: true %>
-      <div class="click">クリックしてファイル選択
+      <div class="diary_new_content">
+        <div class="diary_new_list">
+          <i class="fas fa-file-alt"></i>
+          今日のメモ
+        </div>
+          <%= f.text_area :text, placeholder:"今日あった出来事を残しておきましょう", class:"diary_text"%>
       </div>
-    <%end%>
+      <div class="diary_new_content">
+        <div class="diary_new_list">
+          <i class="fas fa-weight"></i>
+          体重
+        </div>
+          <%= f.text_field :weight ,class:"diary_weight"%>
+          <span class="bold">kg</span>
+      </div>
+      <div class="diary_new_content">
+          <%# 今日の日付も渡す %>
+          <%= f.hidden_field :created_on, value: @created_on %>
+            <%# すでに今日のご飯記録作成済みの場合 %>
+            <% if @today_feed_management %>
+              食べた餌の量<%= @today_feed_management.amount_eaten %>
+              <span class="bold">g</span>
+              <i class="fas fa-hand-point-right"></i>
+              <%= f.submit "ご飯記録を更新する"%>
+            <%# 今日のご飯記録未作成の場合 %>
+            <% else %>
+        <div class="diary_new_list">
+          <i class="fas fa-fish"></i>
+          食べた餌の量
+        </div>
+        <i class="fas fa-paw"></i>
+          今日のご飯記録を作成してください
+        <i class="fas fa-hand-point-right"></i>
+        <%= f.submit "ご飯記録を作成する"%>
+            <% end %>
+      </div>
+          <%= f.submit "保存", class:"submit_btn"%>
+        <% end %>
+    </div>
   </div>
-  <%# すでに紐づいている画像がある場合そのblob_idも送る %>
-  <%if @diary.images.attached?%>
-    <% @diary.images.each do |image| %>
-      <%= hidden_field_tag "diary[images_blob_ids][]", image.blob_id%>
-    <%end%>
-  <%end%>
-今日のメモ
-  <%= f.text_area :text, placeholder:"今日あった出来事を残しておきましょう"%>
-体重
-  <%= f.text_field :weight %>kg
-  <%# 今日の日付も渡す %>
-  <%= f.hidden_field :created_on, value: @created_on %>
-    <%# すでに今日のご飯記録作成済みの場合 %>
-    <% if @today_feed_management %>
-      食べた餌の量<%= @today_feed_management.amount_eaten %>g
-      →<%= f.submit "ご飯記録を更新する"%>
-    <%# 今日のご飯記録未作成の場合 %>
-    <% else %>
-      食べた餌の量
-      今日のご飯記録が未作成です
-      →<%= f.submit "ご飯記録を作成する" %>
-    <% end %>
-  <%= f.submit "保存"%>
-<% end %>
+<%= render partial: "layouts/footer" %>
 

@@ -1,24 +1,14 @@
 .main{
   width: 100vw;
-  height: calc(100vh - 200px);
   background-color: #D7EEFF;
   padding: 5vh 10vw;
 }
-/* トップページ */
-.top_lists{
-  display:flex;
-  flex-direction: column;
-}
 
-.top_list{
-  text-align: center;
-  margin :2vh auto;
-  padding : 0 0;
-}
-
-.fa-fish, .fa-pencil-alt, .fa-book, .fa-sign-out-alt, .fa-shopping-cart, .fa-sign-in-alt, .fa-portrait{
-  color: #66CCFF;
-
+.top_main{
+  height: calc(100vh - 200px);
+  width: 100vw;
+  background-color: #D7EEFF;
+  padding: 5vh 10vw;
 }
 
 .btn{
@@ -36,27 +26,77 @@
   background-color: white;
 }
 
+/* トップページ */
+.top_lists{
+  display:flex;
+  flex-direction: column;
+}
+
+.top_list{
+  text-align: center;
+  margin :2vh auto;
+  padding : 0 0;
+}
+
+.fa-fish, .fa-pencil-alt, .fa-book, .fa-sign-out-alt, .fa-shopping-cart, .fa-sign-in-alt, .fa-portrait{
+  color: #66CCFF;
+
+}
 
 
+/* 日記作成ページ */
 
 
+.diary_new_top{
+  width:35vw;
+  margin: 0 auto;
+  text-align: center;
+  color: #555555;
+  font-size: 20px;
+  border: 4px solid #555555;
+  border-radius : 5px;
+  background-color:white ;
+  font-weight: bold;
+}
+
+.diary_new_top span{
+  font-size: 25px;
+}
+
+.fa-cat, .fa-file-alt, .fa-images, .fa-weight{
+  color: #66CCFF;
+}
+
+.diary_new_lists{
+  padding: 5vh 5vh;
+}
+
+.diary_new_content{
+  margin-bottom: 2vh;
+  font-size: 15px;
+  color: #555555;
+}
+
+.diary_new_list{
+  font-weight: bold;
+  color: #555555;
+  font-size: 20px;
+}
 
 /* 画像、ファイル選択ボタン */
 #image-list{
   display: flex;
 }
 
-/* img{
+.image_form img{
   height: 20vh;
   width: 10vw;
   object-fit: contain;
-  background-color: teal;
-  background-color: #e0e6e98a;
+  background-color: white;
   border: 3px dashed;
-  border-radius: 4%;
-  margin-left: 10px;
-} */
-
+  border-radius: 5px;
+  margin-right: 10px;
+}
 
 .upload_button{
   font-size: 50px;
@@ -64,7 +104,7 @@
 }
 
 .click{
-  color: black;
+  color: #555555;
   padding-top: 5%;
   font-size: 12px;
   font-weight: bolder;
@@ -74,16 +114,71 @@
   display: none;
 }
 
+.click-upload{
+  padding-top: 1vh;
+}
 
 .click-upload label{
   height: 20vh;
   width: 10vw;
-  background-color: #e0e6e98a;
+  background-color: white;
   align-items: center;
   border: 3px dashed;
   display: flex;
   flex-direction: column;
-  border-radius: 4%;
+  border-radius: 5px;
 }
 
-/* 削除ボタン */
+.click-upload label:hover{
+  background-color: #ffc;
+}
+
+/* 今日のメモ */
+.diary_text:focus{
+  background-color: #ffc;  /* 背景色 */
+  outline: none;           /* ※ブラウザが標準で付加する線を消したいとき */
+}
+.diary_text{
+  border: 3px dashed #555555;
+  border-radius: 5px;
+  padding: 3px 10px; 
+  line-height: 20px;        /* 行の高さ */ 
+  height: 20vh; 
+  width: 50vw;
+  color: #555555;
+}
+/* 体重 */
+.diary_weight{
+  border: 3px dashed #555555;
+  border-radius: 5px;
+  height: 5vh; 
+  padding: 3px 10px;
+  text-align: right;
+  width: 10vw;
+}
+
+.diary_weight:focus{
+  background-color: #ffc;  /* 背景色 */
+  outline: none;           /* ※ブラウザが標準で付加する線を消したいとき */
+}
+
+.bold{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.submit_btn{
+  text-decoration: none;
+  width: 300px;
+  font-weight: bold;
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 13pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  line-height   : 1em;         /* 1行の高さ  */
+  border: 3px dashed #555555;    /* 枠の指定 */
+  color: #555555;
+  margin-top: 5vh;
+}
