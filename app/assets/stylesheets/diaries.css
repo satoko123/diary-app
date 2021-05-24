@@ -63,7 +63,8 @@
   font-size: 25px;
 }
 
-.fa-cat, .fa-file-alt, .fa-images, .fa-weight, .fa-trash-alt{
+.fa-cat, .fa-file-alt, .fa-images, .fa-weight, .fa-trash-alt,
+.fa-cookie-bite, .fa-coffee, .fa-sun, .fa-moon{
   color: #66CCFF;
 }
 
