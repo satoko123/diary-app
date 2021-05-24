@@ -1,38 +1,70 @@
-<%# ログインしている場合 %>
-<% if user_signed_in? %>
+<%= render partial: "layouts/header" %>
+  <div class="main">
+   <div class="top_lists">
+      <%# ログインしている場合 %>
+      <% if user_signed_in? %>
+        <%# 今日のご飯記録がすでに作成済みの場合 %>
+          <% if @today_feed_management %>
+            <%= flash[:success] %>
+                <div class="top_list"><%= link_to edit_feed_management_path(@today_feed_management.id), class: "btn" do %>              
+                  <i class="fas fa-fish"></i>ご飯記録を更新する
+                <%end%></div>  
+              <%# 今日の日記がすでに作成済みの場合 %>
+              <% if @today_diary %>            
+                <div class="top_list"><%= link_to edit_diary_path(@today_diary.id), class: "btn" do%>
+                  <i class="fas fa-pencil-alt"></i>今日の日記を編集する
+                <%end%></div>
+              <%# 今日の日記が未作成の場合 %>
+              <% else %> 
+                <div class="top_list"><%= link_to new_diary_path, class: "btn" do %>
+                  <i class="fas fa-pencil-alt"></i>今日の日記を作る
+                <%end%></div>  
+              <% end %>
+                <div class="top_list"><%= link_to diaries_path, class: "btn" do%>
+                  <i class="fas fa-book"></i>日記を見る 
+                <%end%></div>  
+                <div class="top_list"><%= link_to shopping_lists_path, class: "btn" do%>
+                  <i class="fas fa-shopping-cart"></i>買い物リスト
+                <%end%></div>
+                <div class="top_list"><%= link_to destroy_user_session_path, method: :delete, class: "btn" do%>
+                  <i class="fas fa-sign-out-alt"></i>ログアウト
+                <%end%></div>  
+        <%# 今日のご飯記録が未作成の場合 %>
+          <% else %>
+            <div class="top_list"><%= link_to new_feed_management_path, class: "btn" do%>
+              <i class="fas fa-fish"></i>ご飯を記録する
+            <% end %></div>          
+              <%# 今日の日記がすでに作成済みの場合 %>
+              <% if @today_diary %>
+                <div class="top_list"><%= link_to edit_diary_path(@today_diary.id), class: "btn" do%>
+                  <i class="fas fa-pencil-alt"></i>今日の日記を編集する
+                <%end%></div>
+              <%# 今日の日記が未作成の場合 %>
+              <% else %> 
+                <div class="top_list"><%= link_to new_diary_path, class: "btn" do %>
+                  <i class="fas fa-pencil-alt"></i>今日の日記を作る
+                <%end%></div>
+              <% end %>
+            <div class="top_list"><%= link_to diaries_path, class: "btn" do %>
+              <i class="fas fa-book"></i>日記を見る 
+            <%end%></div>
+            <div class="top_list"><%= link_to shopping_lists_path, class: "btn" do %>
+              <i class="fas fa-shopping-cart"></i>買い物リスト
+            <%end%></div>
+            <div class="top_list"><%= link_to destroy_user_session_path, method: :delete, class: "btn" do %>
+              <i class="fas fa-sign-out-alt"></i>ログアウト
+            <%end%></div>
+          <% end %>
 
-  <%# 今日のご飯記録がすでに作成済みの場合 %>
-    <% if @today_feed_management %>
-      <%= flash[:success] %>
-      <%= link_to "ご飯記録を更新する", edit_feed_management_path(@today_feed_management.id) %>
-        <%# 今日の日記がすでに作成済みの場合 %>
-        <% if @today_diary %>
-          <%= link_to "今日の日記を編集する", edit_diary_path(@today_diary.id) %>
-        <%# 今日の日記が未作成の場合 %>
-        <% else %> 
-          <%= link_to "今日の日記を作る", new_diary_path %>
-        <% end %>
-      <%= link_to "日記を見る", diaries_path %>
-      <%= link_to "買い物リスト", shopping_lists_path %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-
-  <%# 今日のご飯記録が未作成の場合 %>
-    <% else %>
-      <%= link_to "ご飯を記録する", new_feed_management_path %>
-        <%# 今日の日記がすでに作成済みの場合 %>
-        <% if @today_diary %>
-          <%= link_to "今日の日記を編集する", edit_diary_path(@today_diary.id) %>
-        <%# 今日の日記が未作成の場合 %>
-        <% else %> 
-          <%= link_to "今日の日記を作る", new_diary_path %>
-        <% end %>
-      <%= link_to "日記を見る", diaries_path %>
-      <%= link_to "買い物リスト", shopping_lists_path %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <% end %>
-
-<%# ログインしていない場合 %>
-<% else %>
-  <%= link_to "ログインする", new_user_session_path %>
-  <%= link_to "新規登録する", new_user_registration_path %>
-<% end %>
+      <%# ログインしていない場合 %>
+      <% else %>
+        <div class="top_list"><%= link_to new_user_session_path, class: "btn" do %>
+          <i class="fas fa-sign-in-alt"></i>ログインする
+        <%end%></div>
+        <div class="top_list"><%= link_to new_user_registration_path, class: "btn" do %>
+          <i class="fas fa-portrait"></i>新規登録する
+        <%end%></div>
+      <% end %>
+    </div>
+  </div>
+<%= render partial: "layouts/footer" %>

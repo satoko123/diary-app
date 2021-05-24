@@ -1,9 +1,52 @@
+.main{
+  width: 100vw;
+  height: calc(100vh - 200px);
+  background-color: #D7EEFF;
+  padding: 5vh 10vw;
+}
+/* トップページ */
+.top_lists{
+  display:flex;
+  flex-direction: column;
+}
+
+.top_list{
+  text-align: center;
+  margin :2vh auto;
+  padding : 0 0;
+}
+
+.fa-fish, .fa-pencil-alt, .fa-book, .fa-sign-out-alt, .fa-shopping-cart, .fa-sign-in-alt, .fa-portrait{
+  color: #66CCFF;
+
+}
+
+.btn{
+  text-decoration: none;
+  width: 300px;
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 13pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  line-height   : 1em;         /* 1行の高さ  */
+  border: 2px dashed #555555;    /* 枠の指定 */
+  color: #555555;
+  background-color: white;
+}
+
+
+
+
+
+
 /* 画像、ファイル選択ボタン */
 #image-list{
   display: flex;
 }
 
-img{
+/* img{
   height: 20vh;
   width: 10vw;
   object-fit: contain;
@@ -12,7 +55,7 @@ img{
   border: 3px dashed;
   border-radius: 4%;
   margin-left: 10px;
-}
+} */
 
 
 .upload_button{
