@@ -7,62 +7,76 @@
           <% if @today_feed_management %>
             <%= flash[:success] %>
                 <div class="top_list"><%= link_to edit_feed_management_path(@today_feed_management.id), class: "btn" do %>              
-                  <i class="fas fa-fish"></i>ご飯記録を更新する
+                  <i class="fas fa-fish"></i>
+                  ご飯記録を更新する
                 <%end%></div>  
               <%# 今日の日記がすでに作成済みの場合 %>
               <% if @today_diary %>            
                 <div class="top_list"><%= link_to edit_diary_path(@today_diary.id), class: "btn" do%>
-                  <i class="fas fa-pencil-alt"></i>今日の日記を編集する
+                  <i class="fas fa-pencil-alt"></i>
+                  今日の日記を編集する
                 <%end%></div>
               <%# 今日の日記が未作成の場合 %>
               <% else %> 
                 <div class="top_list"><%= link_to new_diary_path, class: "btn" do %>
-                  <i class="fas fa-pencil-alt"></i>今日の日記を作る
+                  <i class="fas fa-pencil-alt"></i>
+                  今日の日記を作る
                 <%end%></div>  
               <% end %>
                 <div class="top_list"><%= link_to diaries_path, class: "btn" do%>
-                  <i class="fas fa-book"></i>日記を見る 
+                  <i class="fas fa-book"></i>
+                  日記を見る 
                 <%end%></div>  
                 <div class="top_list"><%= link_to shopping_lists_path, class: "btn" do%>
-                  <i class="fas fa-shopping-cart"></i>買い物リスト
+                  <i class="fas fa-shopping-cart"></i>
+                  買い物リスト
                 <%end%></div>
                 <div class="top_list"><%= link_to destroy_user_session_path, method: :delete, class: "btn" do%>
-                  <i class="fas fa-sign-out-alt"></i>ログアウト
+                  <i class="fas fa-sign-out-alt"></i>
+                  ログアウト
                 <%end%></div>  
         <%# 今日のご飯記録が未作成の場合 %>
           <% else %>
             <div class="top_list"><%= link_to new_feed_management_path, class: "btn" do%>
-              <i class="fas fa-fish"></i>ご飯を記録する
+              <i class="fas fa-fish"></i>
+              ご飯を記録する
             <% end %></div>          
               <%# 今日の日記がすでに作成済みの場合 %>
               <% if @today_diary %>
                 <div class="top_list"><%= link_to edit_diary_path(@today_diary.id), class: "btn" do%>
-                  <i class="fas fa-pencil-alt"></i>今日の日記を編集する
+                  <i class="fas fa-pencil-alt"></i>
+                  今日の日記を編集する
                 <%end%></div>
               <%# 今日の日記が未作成の場合 %>
               <% else %> 
                 <div class="top_list"><%= link_to new_diary_path, class: "btn" do %>
-                  <i class="fas fa-pencil-alt"></i>今日の日記を作る
+                  <i class="fas fa-pencil-alt"></i>
+                  今日の日記を作る
                 <%end%></div>
               <% end %>
             <div class="top_list"><%= link_to diaries_path, class: "btn" do %>
-              <i class="fas fa-book"></i>日記を見る 
+              <i class="fas fa-book"></i>
+              日記を見る 
             <%end%></div>
             <div class="top_list"><%= link_to shopping_lists_path, class: "btn" do %>
-              <i class="fas fa-shopping-cart"></i>買い物リスト
+              <i class="fas fa-shopping-cart"></i>
+              買い物リスト
             <%end%></div>
             <div class="top_list"><%= link_to destroy_user_session_path, method: :delete, class: "btn" do %>
-              <i class="fas fa-sign-out-alt"></i>ログアウト
+              <i class="fas fa-sign-out-alt"></i>
+              ログアウト
             <%end%></div>
           <% end %>
 
       <%# ログインしていない場合 %>
       <% else %>
         <div class="top_list"><%= link_to new_user_session_path, class: "btn" do %>
-          <i class="fas fa-sign-in-alt"></i>ログインする
+          <i class="fas fa-sign-in-alt"></i>
+          ログインする
         <%end%></div>
         <div class="top_list"><%= link_to new_user_registration_path, class: "btn" do %>
-          <i class="fas fa-portrait"></i>新規登録する
+          <i class="fas fa-portrait"></i>
+          新規登録する
         <%end%></div>
       <% end %>
     </div>

@@ -1,7 +1,70 @@
+.shopping_list_main{
+  padding: 5vh 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shopping_lists_forms{
+  margin-bottom: 3vh;
+}
+
+.shopping_lists_form{
+  border: 3px dashed #555555;
+  border-radius: 5px;
+  height: 5vh; 
+  padding: 3px 10px;
+  text-align: center;
+  font-size: larger;
+  color: #555555;
+}
+
+
+.shopping_lists_form:focus{
+  background-color: #ffc;  /* 背景色 */
+  outline: none;           /* ※ブラウザが標準で付加する線を消したいとき */
+}
+
+.shopping_List_btn{
+  text-decoration: none;
+  display       : inline-block;
+  border-radius : 5px;          /* 角丸       */
+  font-size     : 13pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  line-height   : 1em;         /* 1行の高さ  */
+  border: 3px dashed #555555;    /* 枠の指定 */
+  color: #555555;
+  font-weight: bold;
+  background-color: #ffc;
+}
+
 label[data-check="true"] {
-  color: #16a816;
+  color: #66CCFF;
 }
 
 #order_button{
   display: none;
+  position: fixed;
+  bottom: 100px;
+  right: calc(50% - 250px/2);
+  z-index:2;
+}
+
+
+
+
+#order_submit{
+  border-radius: 5px;
+  line-height: 50px;
+  width: 250px;
+  cursor: pointer;
+  text-decoration: none;
+  border: 3px dashed #555555;    /* 枠の指定 */
+  color: #555555;
+  font-weight: bold;
+  background-color: #ffc;
+  text-align    : center;
+
 }

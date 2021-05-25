@@ -1,6 +1,10 @@
+.html, body{
+  height: 100%;
+  background-color: #D7EEFF
+}
+
 .main{
   width: 100vw;
-  background-color: #D7EEFF;
   padding: 5vh 10vw;
 }
 
@@ -160,6 +164,7 @@
   text-align: center;
   width: 10vw;
   font-size: larger;
+  color: #555555;
 }
 
 .diary_weight:focus{
