@@ -13,20 +13,21 @@
             画像<br> 
         </div>
         <span><i class="fas fa-paw"></i>5枚まで選択できます</span>
-        <div class="image_form">
           <%= form_with model: @diary, id: "diary_new_form", local: true do |f| %>
-          <%= render "layouts/error_messages", model: f.object %>
+            <%= render "layouts/error_messages", model: f.object %>
             <%# ダイレクトアップロード済みの画像が表示される %>
-            <%if @diary.images.attached?%>
-              <% @diary.images.each do |image| %>
-                <div class="image-element">
-                <%= image_tag image %>
-                </div>
-              <%end%>
-            <%end%>
-            <%# 画像が選択された場合プレビューを表示 %>
-            <div id="image-list"></div>
-        </div>
+              <div class="image_form">
+                <%if @diary.images.attached?%>
+                  <% @diary.images.each do |image| %>
+                    <div class="image-element">
+                      <%= image_tag image %>
+                    </div>
+                  <%end%>
+                <%end%>
+              <%# 画像が選択された場合プレビューを表示 %>
+                <div id="image-list"></div>    
+              </div>
+              
             <%# 画像選択ボタン %>
             <div class="click-upload">
               <%= f.label :images, for:"diary-image", id: "upload_label", class: "upload_label" do %>
@@ -91,4 +92,5 @@
     </div>
   </div>
 <%= render partial: "layouts/footer" %>
+
 

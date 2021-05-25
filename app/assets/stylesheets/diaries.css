@@ -19,13 +19,13 @@
   text-decoration: none;
   width: 300px;
   display       : inline-block;
-  border-radius : 5px;          /* 角丸       */
-  font-size     : 13pt;        /* 文字サイズ */
-  text-align    : center;      /* 文字位置   */
-  cursor        : pointer;     /* カーソル   */
-  padding       : 12px 12px;   /* 余白       */
-  line-height   : 1em;         /* 1行の高さ  */
-  border: 2px dashed #555555;    /* 枠の指定 */
+  border-radius : 5px;          
+  font-size     : 13pt;        
+  text-align    : center;     
+  cursor        : pointer;     
+  padding       : 12px 12px;   
+  line-height   : 1em;         
+  border: 2px dashed #555555;    
   color: #555555;
   background-color: white;
 }
@@ -92,7 +92,7 @@
 #image-list{
   display: flex;
 }
-.image-form{
+.image_form{
   display: flex;
 }
 
@@ -118,9 +118,9 @@
   font-weight: bolder;
 
 }
-/* .edit-click-upload{
+.edit-click-upload{
   display: none;
-} */
+}
 
 .click-upload{
   padding-top: 1vh;
@@ -143,14 +143,14 @@
 
 /* 今日のメモ */
 .diary_text:focus{
-  background-color: #ffc;  /* 背景色 */
-  outline: none;           /* ※ブラウザが標準で付加する線を消したいとき */
+  background-color: #ffc;
+  outline: none;           
 }
 .diary_text{
   border: 3px dashed #555555;
   border-radius: 5px;
   padding: 3px 10px; 
-  line-height: 20px;        /* 行の高さ */ 
+  line-height: 20px; 
   height: 20vh; 
   width: 50vw;
   color: #555555;
@@ -168,8 +168,8 @@
 }
 
 .diary_weight:focus{
-  background-color: #ffc;  /* 背景色 */
-  outline: none;           /* ※ブラウザが標準で付加する線を消したいとき */
+  background-color: #ffc; 
+  outline: none;         
 }
 
 /* ご飯の量 */
@@ -195,7 +195,7 @@
 .fa-hand-point-right{
   font-size: 1.5em;
   margin-left: 10px;
-}
+} 
 
 .submit_btn{
   background-color: #ffc;
@@ -203,16 +203,17 @@
   width: 300px;
   font-weight: bold;
   display       : inline-block;
-  border-radius : 5px;          /* 角丸       */
-  font-size     : 13pt;        /* 文字サイズ */
-  text-align    : center;      /* 文字位置   */
-  cursor        : pointer;     /* カーソル   */
-  padding       : 12px 12px;   /* 余白       */
-  line-height   : 1em;         /* 1行の高さ  */
-  border: 3px dashed #555555;    /* 枠の指定 */
+  border-radius : 5px;       
+  font-size     : 13pt;     
+  text-align    : center;     
+  cursor        : pointer;     
+  padding       : 12px 12px;
+  line-height   : 1em;        
+  border: 3px dashed #555555;
   color: #555555;
   margin-top: 5vh;
 }
+
 /* 編集ページ */
 .diary_edit_image{
   display: flex;
@@ -242,13 +243,13 @@
   padding : 0 0;
   width: 800px;
   display       : inline-block;
-  border-radius : 5px;          /* 角丸       */
-  font-size     : 13pt;        /* 文字サイズ */
-  text-align    : center;      /* 文字位置   */
-  cursor        : pointer;     /* カーソル   */
-  padding       : 12px 12px;   /* 余白       */
-  line-height   : 1em;         /* 1行の高さ  */
-  border: 2px dashed #555555;    /* 枠の指定 */
+  border-radius : 5px; 
+  font-size     : 13pt;       
+  text-align    : center;   
+  cursor        : pointer; 
+  padding       : 12px 12px; 
+  line-height   : 1em;         
+  border: 2px dashed #555555;  
   color: #555555;
   background-color: white;
   text-decoration: none;
