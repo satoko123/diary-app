@@ -42,8 +42,8 @@
                 <%= f.file_field :images, name:"diary[images][]", id:"diary_image_0",class:"first_button", style: "display: none;", direct_upload: true %>
                 <div class="click">クリックしてファイル選択
                 </div>
-              <%end%>
-           </div>
+              <%end%> 
+            </div>
             <%# すでに紐づいている画像がある場合そのblob_idも送る %>
             <%if @diary.images.attached?%>
               <% @diary.images.each do |image| %>
