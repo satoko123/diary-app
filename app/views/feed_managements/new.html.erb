@@ -56,21 +56,21 @@
           <i class="fas fa-cookie-bite"></i>           
         今日の残り
         </div>
-          <%= f.text_field :today_leftover, class:"diary_weight" %>g
+          <%= f.text_field :today_leftover, class:"diary_weight" %>
           <span class="bold">g</span>
       </div>
           <%# 今日の日付も渡す %>
           <%= f.hidden_field :created_on, value: @created_on %>
             <%# 日記作成ページ経由の場合 %>
-            <% if @value_new = "ご飯記録を作成する" %>
+            <% if @value_new == "ご飯記録を作成する" %>
               <%= f.submit "保存して日記ページへ戻る",name: "new", class:"submit_btn" %>
             <%# 日記編集ページ経由の場合 %>
-            <% elsif @value_edit = "ご飯記録を作成する" %>
+            <% elsif @value_edit == "ご飯記録を作成する" %>
               <%= f.submit "保存して日記ページへ戻る",name: "edit", class:"submit_btn" %>
             <% else %>
               <%= f.submit "保存", class:"submit_btn"%>
-          <%end%>
-        <% end %>
+            <%end%>
+      <% end %>
     </div>
   </div>
 <%= render partial: "layouts/footer" %>

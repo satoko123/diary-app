@@ -23,7 +23,8 @@
               <%end%>
             </div>
           <%else%>
-            <i class="fas fa-paw"></i>投稿画像はありません
+            <i class="fas fa-paw"></i>
+            投稿画像はありません
           <%end%>
       </div>
       <div class="diary_new_content">
@@ -33,7 +34,8 @@
         </div>
           <div class="diary_show_text">
             <% if @diary.text == "" %>
-              <i class="fas fa-paw"></i>メモが登録されてません
+              <i class="fas fa-paw"></i>
+              メモが登録されてません
             <%else%>
               <%= @diary.text %>
             <%end%>
@@ -45,7 +47,8 @@
             体重
         </div>
             <% if @diary.weight == nil %>
-              <i class="fas fa-paw"></i>体重が登録されてません
+              <i class="fas fa-paw"></i>
+              体重が登録されてません
             <%else%>
             <div class="amount_eaten">
               <div class="bottom_line">
@@ -68,7 +71,8 @@
             </div>
           </div>
         <% else %>
-          <i class="fas fa-paw"></i>ご飯記録がありません
+          <i class="fas fa-paw"></i>
+          ご飯記録がありません
         <% end %>
       </div>
         <%= link_to edit_diary_path(@diary.id), class:"submit_btn" do %>

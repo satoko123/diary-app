@@ -3,6 +3,7 @@ class FeedManagementsController < ApplicationController
 
   def new
     # 日記作成ページ経由の場合
+    binding.pry
     if params[:commit]
       @feed_management = FeedManagement.new
       @value_new = params[:commit]
