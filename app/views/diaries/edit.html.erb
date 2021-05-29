@@ -7,6 +7,8 @@
     </div> 
     
     <div class="diary_new_lists">
+    <%= form_with model: @diary, id: "diary_edit_form", local: true do |f| %>
+    <%= render "layouts/error_messages", model: f.object %>
       <div class="diary_new_content">
         <div class="diary_new_list"> 
           <i class="fas fa-images"></i>
@@ -14,8 +16,6 @@
         </div>
         <span><i class="fas fa-paw"></i>
         5枚まで選択できます</span>
-          <%= form_with model: @diary, id: "diary_edit_form", local: true do |f| %>
-            <%= render "layouts/error_messages", model: f.object %>
             <%# ダイレクトアップロード済みの画像が表示される %>
               <div class="image_form">
                 <%if @diary.images.attached? %>                 

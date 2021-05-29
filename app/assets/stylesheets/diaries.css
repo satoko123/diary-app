@@ -268,5 +268,14 @@
   object-fit: contain;
 }
 
+.errors{
+  color:#CC0033	;
+  font-weight: bold;
+  text-align: left;
+  background-color: #ffc;
+  margin-bottom: 2vh;
+}
 
-/* 日記詳細ページ */
+.field_with_errors {
+  display: contents;
+}
