@@ -1,42 +1,88 @@
-<%= l(@diary.created_on)%>の日記
-  (最終更新
-  <%= l(@diary.updated_at, format: :long)%>)
-  
-  <br><%# 投稿画像があれば1枚目を表示 %>
-    <% if @diary.images.count > 0 %>
-     投稿画像<br>
-      <% @diary.images.each do |image| %> 
-        <%= image_tag image.variant(resize_to_fill: [128, 128]) %>
-      <%end%>
-    <%else%>
-      投稿画像なし
-    <%end%>
-  <div>
-  今日のメモ
-  <div>
-  <%= @diary.text %>
-  </div>
-  </div>
-  <div>
-  体重
-  <div>
-  <% if @diary.weight == nil %>
-    体重が登録されてません
-  <%else%>
-    <%= @diary.weight %>kg
-  <%end%>
-  </div>
-  </div>
-  <div>
-  食べた餌の量
-  <div>
-    <% if @today_feed_management %>
-      <%= @today_feed_management.amount_eaten %>g
-    <% else %>
-      ご飯記録がありません
-    <% end %>
-  </div>
-  </div>
+<%= render partial: "layouts/header" %>
+  <div class="main">
+    <div class="diary_new_top">
+      <i class="fas fa-cat"></i>
+        <span><%= l(@diary.created_on)%></span>の日記
+        <i class="fas fa-cat fa-flip-horizontal"></i><br>
 
-  <%= link_to "編集", edit_diary_path(@diary.id) %>
-  <%= link_to "削除", diary_path(@diary.id), method: :delete, data: { confirm: 'この日記を削除しますか？'}%>
+        (最終更新
+        <%= l(@diary.updated_at, format: :long)%>)
+    </div>   
+
+    <div class="diary_new_lists">
+      <div class="diary_new_content">
+        <div class="diary_new_list"> 
+          <i class="fas fa-images"></i>
+            画像<br> 
+        </div>
+        <%# 投稿画像があれば1枚目を表示 %>
+          <% if @diary.images.count > 0 %>
+            <div class="image_form">
+              <% @diary.images.each do |image| %> 
+                <%= image_tag image %>
+              <%end%>
+            </div>
+          <%else%>
+            <i class="fas fa-paw"></i>
+            投稿画像はありません
+          <%end%>
+      </div>
+      <div class="diary_new_content">
+        <div class="diary_new_list">
+          <i class="fas fa-file-alt"></i>
+            今日のメモ
+        </div>
+          <div class="diary_show_text">
+            <% if @diary.text == "" %>
+              <i class="fas fa-paw"></i>
+              メモが登録されてません
+            <%else%>
+              <%= @diary.text %>
+            <%end%>
+          </div>
+      </div>
+      <div class="diary_new_content">
+        <div class="diary_new_list">
+          <i class="fas fa-weight"></i>
+            体重
+        </div>
+            <% if @diary.weight == nil %>
+              <i class="fas fa-paw"></i>
+              体重が登録されてません
+            <%else%>
+            <div class="amount_eaten">
+              <div class="bottom_line">
+                <%= @diary.weight %>
+                <span class="bold">kg</span>
+              </div>
+             </div>
+            <%end%>   
+      </div>
+      <div class="diary_new_content">
+        <div class="diary_new_list">
+          <i class="fas fa-fish"></i>
+            食べた餌の量
+        </div>
+        <% if @today_feed_management %>
+          <div class="amount_eaten">
+            <div class="bottom_line">
+              <%= @today_feed_management.amount_eaten %>
+              <span class="bold">g</span>
+            </div>
+          </div>
+        <% else %>
+          <i class="fas fa-paw"></i>
+          ご飯記録がありません
+        <% end %>
+      </div>
+        <%= link_to edit_diary_path(@diary.id), class:"submit_btn" do %>
+          <i class="fas fa-pencil-alt"></i>
+          編集する
+        <%end%>
+        <%= link_to diary_path(@diary.id), method: :delete, data: { confirm: 'この日記を削除しますか？'}, class:"submit_btn" do%>
+          <i class="fas fa-trash-alt"></i>
+          削除する
+        <%end%>
+    </div>
+  </div>
+<%= render partial: "layouts/footer" %>

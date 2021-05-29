@@ -1,28 +1,46 @@
-買い物リスト
+<%= render partial: "layouts/header" %>
+  <div class="main">
+    <div class="diary_new_top">
+      <i class="fas fa-cat"></i>
+      <span>買い物リスト</span>
+      <i class="fas fa-cat fa-flip-horizontal"></i>
+    </div>
 
-<%# エラーメッセージを表示 %>
-<%= form_with url: shopping_lists_path, method: :post,id: "form" do |f| %>
-  <%= f.text_field :item_name, id: "content"%>
-  <%= f.submit '追加する' , id: "submit" %>
-<% end %>
+    <%# エラーメッセージを表示 %>
 
-<div id="list">
-</div>
-<%= form_with url: shopping_lists_path, method: :delete, id: "order_form" do |f|%>
-  <ul class="post">
-    <% @shopping_lists.each do |shopping_list| %>
-      <%# 各リストにデータidを付与 %>
-      <li list-id="<%= shopping_list.id %>">
-        <%= check_box_tag :"check[]", shopping_list.id%>
-        <%= label_tag :"check[]", shopping_list.item_name, id: shopping_list.id %>
-      </li>
-    <% end %>
-  </ul>
-  <%# 購入ボタン %>
-  <div id="order_button">
-    <%= f.submit '購入済み' , id: "order_submit" %>
-  </div>
-<%end%>
+    <div class="shopping_list_main">
+      <div class="shopping_list_content">
+        <div class="shopping_lists_forms">
+          <%= form_with url: shopping_lists_path, method: :post,id: "form" do |f| %>
+            <%= f.text_field :item_name, id: "content", class: "shopping_lists_form"%>
+            <%= f.submit '追加する' , id: "submit", class:"shopping_List_btn" %>
+          <% end %>
+        </div>
+        <div class="shopping_lists">
+          <div class="diary_new_list">
+            <div id="list">
+            </div>
+            <%= form_with url: shopping_lists_path, method: :delete, id: "order_form" do |f|%>
+              <ul class="post">
+                <% @shopping_lists.each do |shopping_list| %>
+                  <%# 各リストにデータidを付与 %>
+                  <li list-id="<%= shopping_list.id %>">
+                    <%= check_box_tag :"check[]", shopping_list.id%>
+                    <%= label_tag :"check[]", shopping_list.item_name, id: shopping_list.id %>
+                  </li>
+                <% end %>
+              </ul>
+          </div>
+        </div>
+              <%# 購入ボタン %>
+              <div id="order_button">
+                <%= f.submit '購入済み' , id: "order_submit" %>
+              </div>
+            <%end%>
+        </div>
+      </div>
+    </div>
+  <%= render partial: "layouts/footer" %>
 
 
 

@@ -1,35 +1,74 @@
-ご飯記録を更新する 
-<%= l(@created_on) %>
-<%= form_with model: @feed_management, local: true do |f| %>
-<%# エラーメッセージを表示 %>
-<%= render "layouts/error_messages", model: f.object %>
-  昨日の残り
-  <%# 昨日のご飯記録データがある場合 %>
-  <%if FeedManagement.where(created_on: @created_on-1).exists?%>
-    <%# 昨日のご飯の残りを取得 %>
-    <%= f.text_field :yesterday_leftover, value: @feed_management_yesterday.today_leftover %>g
-  <%# 昨日のご飯記録データがない場合 %>
-  <%else%>
-    <%= f.text_field :yesterday_leftover %>g
-  <%end%>
- 
-  追加（朝）
-  <%= f.text_field :morning_addition %>g
-  追加（昼）
-  <%= f.text_field :noon_addition %>g
-  追加（夜）
-  <%= f.text_field :evening_addition %>g
-  残り
-  <%= f.text_field :today_leftover %>g
-  <%# 今日の日付も渡す %>
-  <%= f.hidden_field :created_on, value: @created_on %>
-    <%# 日記作成ページ経由の場合 %>
-    <% if @value_new == "ご飯記録を更新する"%>
-      <%= f.submit "保存して日記ページへ戻る" %>
-    <%# 日記編集ページ経由の場合 %>
-    <% elsif @value_edit == "ご飯記録を更新する" %>
-      <%= f.submit "保存して日記ページへ戻る" %>
-    <%else%>
-      <%= f.submit "保存"%>
-    <%end%>
-<% end %>
+<%= render partial: "layouts/header" %>
+  <div class="main">
+      <div class="diary_new_top">
+        <i class="fas fa-cat"></i>
+        <span><%= l(@created_on) %></span>のごはん記録
+        <i class="fas fa-cat fa-flip-horizontal"></i>
+      </div>
+
+    <div class="diary_new_lists">
+      <%= form_with model: @feed_management, local: true do |f| %>
+      <%# エラーメッセージを表示 %>
+      <%= render "layouts/error_messages", model: f.object %>
+      <div class="diary_new_content">
+        <div class="diary_new_list">
+          <i class="fas fa-cookie-bite"></i>
+            昨日の残り
+        </div>
+          <%# 昨日のご飯記録データがある場合 %>
+          <%if FeedManagement.where(created_on: @created_on-1).exists?%>
+            <%# 昨日のご飯の残りを取得 %>
+
+            <%= f.text_field :yesterday_leftover, value: @feed_management_yesterday.today_leftover, class:"diary_weight" %>
+            <span class="bold">g</span> 
+          <%# 昨日のご飯記録データがない場合 %>
+          <%else%>
+            <%= f.text_field :yesterday_leftover, class:"diary_weight" %>
+            <span class="bold">g</span> 
+          <%end%>
+      </div>  
+      <div class="diary_new_content">
+        <div class="diary_new_list">
+          <i class="fas fa-coffee"></i>
+          追加（朝）
+        </div>
+          <%= f.text_field :morning_addition, class:"diary_weight" %>
+          <span class="bold">g</span>        
+      </div>
+      <div class="diary_new_content">
+        <div class="diary_new_list">
+          <i class="fas fa-sun"></i>
+          追加（昼）
+        </div>
+          <%= f.text_field :noon_addition, class:"diary_weight" %>
+          <span class="bold">g</span>
+      </div>
+      <div class="diary_new_content">
+        <div class="diary_new_list">
+          <i class="fas fa-moon"></i>
+          追加（夜）
+        </div>
+          <%= f.text_field :evening_addition, class:"diary_weight" %>
+          <span class="bold">g</span>
+      </div>
+      <div class="diary_new_content">
+        <div class="diary_new_list">
+          <i class="fas fa-cookie-bite"></i>
+          今日の残り
+        </div>
+          <%= f.text_field :today_leftover, class:"diary_weight"  %>
+          <span class="bold">g</span>
+      </div>
+          <%# 今日の日付も渡す %>
+          <%= f.hidden_field :created_on, value: @created_on %>
+            <%# 日記作成・編集ページ経由の場合 %>
+            <% if @value == "ご飯記録を更新する"%>
+              <%= f.submit "保存して日記ページへ戻る", class:"submit_btn" %>
+            <%# 日記編集ページ経由の場合 %>
+            <%else%>
+              <%= f.submit "保存", class:"submit_btn"%>
+            <%end%>
+        <% end %>
+    </div>
+  </div>
+<%= render partial: "layouts/footer" %>

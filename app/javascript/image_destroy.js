@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function(){
               destroy_blob_id.remove()
             }; 
           });
-          debugger
           // 投稿画像が5枚以下ならファイル選択ボタン表示
           let selectedNum = document.querySelectorAll('.image-element').length
             if (selectedNum < 5) {
