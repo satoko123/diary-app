@@ -23,7 +23,6 @@ class FeedManagementsController < ApplicationController
   end
 
   def create
-    binding.pry
     @feed_management = FeedManagement.new(feed_management_params)
     if @feed_management.valid?
       @feed_management.save
