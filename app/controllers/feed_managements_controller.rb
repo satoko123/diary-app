@@ -2,6 +2,7 @@ class FeedManagementsController < ApplicationController
   before_action :set_feed_management, only: [:edit, :update]
 
   def new
+    @feed_management = FeedManagement.new
     # 日記作成ページ経由の場合
     if params[:commit]
       @feed_management = FeedManagement.new
@@ -16,7 +17,6 @@ class FeedManagementsController < ApplicationController
       feed_management_yesterday
     # トップページ経由の場合
     else
-      @feed_management = FeedManagement.new
       get_date
       feed_management_yesterday
     end
@@ -29,11 +29,12 @@ class FeedManagementsController < ApplicationController
       update_yesterday_data
       # 日記編集ページ経由の場合
       if params[:edit] == "保存して日記ページへ戻る"
-        redirect_to edit_diary_path(commit: params[:commit], id: @feed_management.diary.id)
+        @diary = Diary.find_by(created_on: params[:feed_management][:created_on], user_id: current_user.id)
+        redirect_to edit_diary_path(commit: params[:edit], id: @diary.id)
       # 日記作成ページ経由の場合
       elsif params[:new] 
         @diary = Diary.find_by(created_on: params[:feed_management][:created_on], user_id: current_user.id)
-        redirect_to edit_diary_path(commit: params[:commit], id: @diary.id) 
+        redirect_to edit_diary_path(commit: params[:new], id: @diary.id) 
       else
         # トップページ経由の場合
         redirect_to root_path, flash: {success: "ご飯記録を保存しました"}
