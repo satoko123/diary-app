@@ -124,7 +124,7 @@ http://35.74.24.200
 # 使用技術(開発環境)
 - Ruby(2.6.5)
 - Ruby on Rails(6.0.3.6)
-- MySQL(14.14)
+- MySQL(5.6.50)
 - GitHub
 - AWS
   - EC2
