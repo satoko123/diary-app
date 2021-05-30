@@ -113,7 +113,8 @@ http://35.74.24.200
   【事例1】
   **画像アップロード機能**における**ダイレクトアップロード機能**の実装<br>
   - バリデーションに引っかかりページに戻された際に、せっかく選択していた画像がリセットされてしまうのを防いだ
-[![Image from Gyazo](https://i.gyazo.com/844c54db719b9ba56b50a6e1d5f09cb9.gif)](https://gyazo.com/844c54db719b9ba56b50a6e1d5f09cb9)
+[![Image from Gyazo](https://i.gyazo.com/844c54db719b9ba56b50a6e1d5f09cb9.gif)](https://gyazo.com/844c54db719b9ba56b50a6e1d5f09cb9)<br />
+  <br />
 
   【事例2】
   **日記作成・編集ページ**内にも、**ご飯記録作成・更新機能へのリンク**を実装<br>
@@ -129,38 +130,39 @@ http://35.74.24.200
 - AWS
 - Visual Studio Code
 - Trello
+<br />
 
 # 課題や今後実装したい機能
 ## 課題
-現状、記録するデータが体重と食べた餌の量のみであるため、「飼い猫の体調を管理したい」という課題においては解決には不十分である
+現状、記録するデータが体重と食べた餌の量のみであるため、「飼い猫の体調を管理したい」という課題の解決には不十分である
 ## 今後実装したい機能
 - 毎日の体調を簡単にチェックできるチェックリスト機能
 - 病院検索ができる機能
+<br />
 
 # DB設計
 ## ER図
+![ER1](https://user-images.githubusercontent.com/74867562/120118323-eedecc80-c1cc-11eb-8af0-88a60ee30876.png)
+<br />
+<br />
 
+## テーブル設計
 
-
-# テーブル設計
-
-## users テーブル
+### users テーブル
 
 | Column   | Type   | Options                   |
 | -------- | ------ | ------------------------- |
 | email    | string | null: false, unique: true |
 | password | string | null: false               |
 
-### Association
+#### Association
 
 - has_many :diaries
 - has_many :feed_managements
 - has_many :shopping_lists
 <br />
-<br />
-<br />
 
-## diaries テーブル
+### diaries テーブル
 
 | Column          | Type       | Options                                  |
 | --------------- | ---------- | ---------------------------------------- |
@@ -170,16 +172,13 @@ http://35.74.24.200
 | feed_management | references | foreign_key: true                        |
 | created_on      | date       | null: false, unique: true(scope:user)    |
 
-### Association
+#### Association
 
 - belongs_to :user
 - belongs_to :feed_management
 <br />
-<br />
-<br />
 
-
-## feed_managements テーブル
+### feed_managements テーブル
 
 | Column             | Type        | Options                               |
 | ------------------ | ----------- | ------------------------------------- |
@@ -192,22 +191,20 @@ http://35.74.24.200
 | created_on         | date        | null: false, unique: true(scope: user)|
 | user               | references  | null: false, foreign_key: true        |
 
-### Association
+#### Association
 
 - has_one :diary
 - belongs_to :user
 <br />
-<br />
-<br />
 
-## shopping_lists テーブル
+### shopping_lists テーブル
 
 | Column             | Type        | Options                               |
 | ------------------ | ----------- | ------------------------------------- |
 | item_name          | string      | null: false                           |
 | user               | references  | null: false, foreign_key: true        |
 
-### Association
+#### Association
 
 - belongs_to :user
 
