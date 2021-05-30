@@ -254,8 +254,8 @@
 .diary_list{
   display: flex;
   justify-content: center;
+  align-items: center;
   color: #555555;
-
 }
 
 .list_btn{
@@ -279,13 +279,25 @@
   font-weight: bold;
 }
 
-.list_image{
-  width: 128px;
+
+.diary_list{
+  margin-bottom: 5vh;
+}
+
+.image{
+  width: 130px;
   height: 128px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 5px;
+  background-color: #66CCFF;
+  border: 2px dashed #555555; 
+}
+
+
+.list_image{
+  width: 128px;
+  height: 128px;
   object-fit: contain;
 }
 
