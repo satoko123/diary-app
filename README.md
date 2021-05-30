@@ -49,8 +49,7 @@ http://35.74.24.200
 
 - ### ご飯記録作成機能
  1. トップページで「ご飯記録を作成する」をクリックする<br>※ すでにその日のご飯記録が作成済みの場合、「ご飯記録を更新する」ボタンが表示される
- 2. 各項目を入力して「保存」をクリック
- 　　※ 「昨日の残り」は、前日記録したデータが自動入力される
+ 2. 各項目を入力して「保存」をクリック<br>※ 「昨日の残り」は、前日記録したデータが自動入力される
  3. トップページが「ご飯記録を更新する」に変わる
 [![Image from Gyazo](https://i.gyazo.com/dd73669687667dbf87a9dfc9140c3338.gif)](https://gyazo.com/dd73669687667dbf87a9dfc9140c3338)
 
@@ -58,6 +57,7 @@ http://35.74.24.200
  1. トップページで「ご飯記録を更新する」をクリックする
  2. 各項目を入力して「保存」をクリック
 [![Image from Gyazo](https://i.gyazo.com/0c202dbe5e75922594d07392ca6ab80f.gif)](https://gyazo.com/0c202dbe5e75922594d07392ca6ab80f)
+<br />
 
 ## 2. 日記機能
 - ### 日記作成機能
@@ -71,7 +71,7 @@ http://35.74.24.200
 
 - ### 日記編集機能
 1. トップページで「今日の日記を編集する」をクリックする
-2. 「画像」、「今日のメモ」、「体重」を編集する<br>※ 画像は削除して追加ができる
+2. 「画像」、「今日のメモ」、「体重」を編集する<br>※ 画像は削除して新たに追加ができる
 3. 「食べた餌の量」にはご飯記録機能で入力したデータの計算結果が表示される
 4. ご飯記録を作成する（更新する）をクリックするとご飯記録の作成または更新ができる
 5. 保存ボタンをクリックする
@@ -82,6 +82,7 @@ http://35.74.24.200
 2. 過去に投稿した日記一覧と、投稿された画像(1枚目)が表示される
 3. 見たい一覧をクリックすると、日記の詳細が表示される
 [![Image from Gyazo](https://i.gyazo.com/c8441a2e7e010a951e66389a1bf10e04.gif)](https://gyazo.com/c8441a2e7e010a951e66389a1bf10e04)
+<br />
 
 ## 3. 買い物リスト機能
 - ### 買い物リスト追加機能
@@ -95,17 +96,50 @@ http://35.74.24.200
 2. 削除したい商品をクリックすると、「購入済み」ボタンが表示される
 3. 「購入済み」ボタンをクリックすると、リストから商品が消える
 [![Image from Gyazo](https://i.gyazo.com/de84f1f9b58c9e72f3213d18fdf4ea7c.gif)](https://gyazo.com/de84f1f9b58c9e72f3213d18fdf4ea7c)
+<br />
 
 # 工夫したポイント
 
+## ユーザ視点での利便性を重視した機能実装
+- ### 見た目におけるシンプルかつ見やすさの追求
+  【事例】
+  **買い物リスト機能**における、**javascript**の使用
+  - クリックした文字をわかりやすくするため、文字の色を変化させた
+  - 画面をシンプルにするために、商品選択時のみ購入済みボタンが表示されるようにした
+[![Image from Gyazo](https://i.gyazo.com/a17207fa5e499b2dbde3a2d83c5da771.gif)](https://gyazo.com/a17207fa5e499b2dbde3a2d83c5da771)
+<br />
 
+- ### 実際に使用した時に手間だと感じるような要因を洗い出し、解消
+  【事例1】
+  **画像アップロード機能**における**ダイレクトアップロード機能**の実装<br>
+  - バリデーションに引っかかりページに戻された際に、せっかく選択していた画像がリセットされてしまうのを防いだ
+[![Image from Gyazo](https://i.gyazo.com/844c54db719b9ba56b50a6e1d5f09cb9.gif)](https://gyazo.com/844c54db719b9ba56b50a6e1d5f09cb9)
 
+  【事例2】
+  **日記作成・編集ページ**内にも、**ご飯記録作成・更新機能へのリンク**を実装<br>
+  - 日記作成・編集時にも、まとめてご飯記録作成・更新ができるようにした
+[![Image from Gyazo](https://i.gyazo.com/4f8621f97dd35bf6a3d559f3e17e0023.gif)](https://gyazo.com/4f8621f97dd35bf6a3d559f3e17e0023)
+<br />
 
+# 使用技術(開発環境)
+- Ruby
+- Ruby on Rails
+- MySQL
+- GitHub
+- AWS
+- Visual Studio Code
+- Trello
 
+# 課題や今後実装したい機能
+## 課題
+現状、記録するデータが体重と食べた餌の量のみであるため、「飼い猫の体調を管理したい」という課題においては解決には不十分である
+## 今後実装したい機能
+- 毎日の体調を簡単にチェックできるチェックリスト機能
+- 病院検索ができる機能
 
+# DB設計
+## ER図
 
-
-# 使用技術
 
 
 # テーブル設計
@@ -140,40 +174,10 @@ http://35.74.24.200
 
 - belongs_to :user
 - belongs_to :feed_management
-- has_many :diary_checks
-- has_many :check_lists, through: :diary_checks
 <br />
 <br />
 <br />
 
-## diary_checks テーブル
-
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| check_list      | references | null: false, foreign_key: true |
-| diary           | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :diary
-- belongs_to :check_list
-<br />
-<br />
-<br />
-
-## check_lists テーブル
-
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| list            | string     | null: false, unique: true      |
-
-### Association
-
-- has_many :diary_checks
-- has_many :diaries, through: :diary_checks
-<br />
-<br />
-<br />
 
 ## feed_managements テーブル
 
