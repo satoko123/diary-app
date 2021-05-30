@@ -30,6 +30,27 @@
   background-color: white;
 }
 
+.to_top{
+  padding-left: 3vw;
+  padding-bottom: 2vh;
+}
+
+.btn_to_top{
+  background-color: #ffc;
+  text-decoration: none;
+  width: 200px;
+  font-weight: bold;
+  display       : inline-block;
+  border-radius : 5px;       
+  font-size     : 12pt;     
+  text-align    : center;     
+  cursor        : pointer;     
+  padding       : 12px 12px;
+  line-height   : 1em;        
+  border: 3px dashed #555555;
+  color: #555555;
+}
+
 /* トップページ */
 .top_lists{
   display:flex;
@@ -68,12 +89,12 @@
 }
 
 .fa-cat, .fa-file-alt, .fa-images, .fa-weight, .fa-trash-alt,
-.fa-cookie-bite, .fa-coffee, .fa-sun, .fa-moon{
+.fa-cookie-bite, .fa-coffee, .fa-sun, .fa-moon, .fa-undo-alt{
   color: #66CCFF;
 }
 
 .diary_new_lists{
-  padding: 5vh 5vh;
+  padding: 5vh 3vw;
 }
 
 .diary_new_content{
