@@ -122,11 +122,13 @@ http://35.74.24.200
 <br />
 
 # 使用技術(開発環境)
-- Ruby
-- Ruby on Rails
-- MySQL
+- Ruby(2.6.5)
+- Ruby on Rails(6.0.3.6)
+- MySQL(14.14)
 - GitHub
 - AWS
+  - EC2
+  - S3
 - Visual Studio Code
 - Trello
 <br />
