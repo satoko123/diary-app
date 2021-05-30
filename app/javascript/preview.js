@@ -41,11 +41,14 @@ document.addEventListener('DOMContentLoaded', function(){
       firstLabel.setAttribute('style', 'display: none;')
 
       // ファイル選択ボタンを生成
+      // 最初のファイル生成ボタンのダイレクトアップロードURLを取得
+      const firstInput = document.getElementById('diary-image')
+      const firstUrl = firstInput.getAttribute('data-direct-upload-url')
       const inputHTML = document.createElement('input')
       inputHTML.setAttribute('id', `diary_image_${imageElementNum}`)
       inputHTML.setAttribute('name', 'diary[images][]')
       inputHTML.setAttribute('type', 'file')
-      inputHTML.setAttribute('data-direct-upload-url', 'http://localhost:3000/rails/active_storage/direct_uploads')
+      inputHTML.setAttribute('data-direct-upload-url', firstUrl)
       inputHTML.setAttribute('style', 'display: none;')
 
       //文字生成
