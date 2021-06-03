@@ -150,7 +150,7 @@ http://35.74.24.200
 
 # DB設計
 ## ER図
-![ER1](https://user-images.githubusercontent.com/74867562/120118323-eedecc80-c1cc-11eb-8af0-88a60ee30876.png)
+![ER1](https://user-images.githubusercontent.com/74867562/120618296-e7057d80-c495-11eb-88f1-d57de0ddc97e.png)
 <br />
 <br />
 
