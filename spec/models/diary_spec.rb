@@ -41,12 +41,19 @@ RSpec.describe Diary, type: :model do
         expect(@diary.errors.full_messages).to include("体重は半角数字で入力してください")
       end
 
-      it 'created_onが重複していると登録できない' do
+      it 'ユーザーが紐付いていなければ登録できない' do
+        @diary.user = nil
+        @diary.valid?
+        expect(@diary.errors.full_messages).to include('Userを入力してください')
+      end
+
+      it '同一ユーザの中でcreated_onが重複していると登録できない' do
         @diary.save
         another_diary = FactoryBot.build(:diary)
         another_diary.created_on = @diary.created_on
+        another_diary.user_id = @diary.user_id
         another_diary.valid?
-        expect(another_diary.errors.full_messages).to include("Created onはすでに存在します")
+        expect(another_diary.errors.full_messages).to include("今日の日記は既に作成されております。トップページへ戻って確認してください。")
       end
     end
   end
