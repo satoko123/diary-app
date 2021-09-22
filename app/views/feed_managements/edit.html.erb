@@ -1,10 +1,16 @@
 <%= render partial: "layouts/header" %>
   <div class="main">
-      <div class="diary_new_top">
-        <i class="fas fa-cat"></i>
-        <span><%= l(@created_on) %></span>のごはん記録
-        <i class="fas fa-cat fa-flip-horizontal"></i>
-      </div>
+    <%# トップページへ戻るボタン %>
+    <div class="to_top"><%= link_to "/", class:"btn_to_top" do %>              
+    <i class="fas fa-undo-alt"></i>
+    トップページへ
+    <%end%> 
+    </div>
+    <div class="diary_new_top">
+      <i class="fas fa-cat"></i>
+      <span><%= l(@created_on) %></span>のごはん記録
+      <i class="fas fa-cat fa-flip-horizontal"></i>
+    </div>
 
     <div class="diary_new_lists">
       <%= form_with model: @feed_management, local: true do |f| %>
