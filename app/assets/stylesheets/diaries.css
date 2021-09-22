@@ -243,6 +243,10 @@
 .diary_edit_images{
   display: flex;
 }
+/* 詳細ページ */
+.update_at{
+  font-size: 15px;
+}
 
 /* 一覧ページ */
 .diary_lists{
