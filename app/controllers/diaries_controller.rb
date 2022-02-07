@@ -1,5 +1,4 @@
 class DiariesController < ApplicationController
-  before_action :get_date, only: [:index, :new]
   before_action :get_feed_management, only: [:new]
   before_action :set_diary, only: [:show, :edit, :update, :destroy]
   
@@ -12,6 +11,7 @@ class DiariesController < ApplicationController
   end
 
   def new 
+    get_date
     @diary = Diary.new
   end
 
@@ -42,6 +42,11 @@ class DiariesController < ApplicationController
   
   def show
     @today_feed_management = FeedManagement.find_by(created_on: @diary.created_on, user_id: current_user.id) 
+  end
+
+  def weight
+    @graph = Diary.where(user_id: current_user.id).where.not(weight: nil).select('created_on, weight').order('created_on ASC')
+    # weightカラムの値がnilのデータを取り除く
   end
 
   def edit

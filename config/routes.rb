@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :feed_managements, only: [:new, :create, :edit, :update]
   root to: "diaries#index"
   get 'diaries', to: 'diaries#list'
+  get 'weight', to: 'diaries#weight'
   resources :diaries, except: [:index] do
     member do
       get 'image_destroy'
