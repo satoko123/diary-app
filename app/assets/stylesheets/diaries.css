@@ -59,8 +59,8 @@
 
 .top_list{
   text-align: center;
-  margin :2vh auto;
-  padding : 0 0;
+  margin :1vh auto;
+  /* padding : 0 0; */
 }
 
 .fa-fish, .fa-pencil-alt, .fa-book, .fa-sign-out-alt, .fa-shopping-cart, .fa-sign-in-alt, .fa-portrait{
@@ -315,4 +315,9 @@
 
 .field_with_errors {
   display: contents;
+}
+
+/* 体重の記録結果 */
+.graph {
+  padding: 10vh 5vh;
 }
